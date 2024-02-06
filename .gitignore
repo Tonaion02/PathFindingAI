@@ -1,0 +1,12 @@
+# Output-Dir
+output
+
+# Visual Studio Files and Folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+
+# DLL FILES
+**.dll
