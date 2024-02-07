@@ -29,6 +29,8 @@ private:
 public:
 	const std::string baseDataPath = "data/";
 
+	const std::string levelFilePath = "data/level0.tmx";
+
 private:
 	struct Level* currentLevel;
 };

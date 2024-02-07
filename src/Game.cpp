@@ -47,8 +47,11 @@ void Game::processInput()
 
 void Game::loadData()
 {
-
+	currentLevel = Level::loadLevelFromFile(Game::levelFilePath);
+	SDL_Log("");
 }
+
+
 
 void Game::init()
 {
