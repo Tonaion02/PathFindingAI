@@ -1,12 +1,11 @@
-#include <stdio.h>
-
 #include "Game.h"
+
 
 
 
 
 int main()
 {
-	Game::get().run();
+	run();
 	return 0;
 }

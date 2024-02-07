@@ -10,3 +10,12 @@ output
 
 # DLL FILES
 **.dll
+
+# Other Files
+src/ECS/ComponentManager.h
+src/ToDo.h
+src/Inspiration/**.h
+src/Inspiration/**.cpp
+
+# Directories
+Inspiration

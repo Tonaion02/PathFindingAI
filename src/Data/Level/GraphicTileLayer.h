@@ -18,10 +18,18 @@
 template<std::size_t n>
 struct GraphicTileLayer
 {
+	//GraphicTileLayer() {
+	//	gTiles.resize(n);
+	//}
+
 	GraphicTileLayer() {
-		gTiles.resize(n);
+		gTiles = new short int[n];
 	}
 
-	std::vector<short int> gTiles;
+	//std::array<short int, n> gTiles;
+
+	//std::vector<short int> gTiles;
+	
+	short int* gTiles;
 	std::vector<int> deepOfLayer;
 };

@@ -1,13 +1,15 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include "ECS/GroupEntity.h"
 
-#include "Math/Vector2i.h"
+#include "utils/Math/Math.h"
 
-#include "TileSet/TileSet.h"
+#include "Enviroment/TileSet.h"
 
-#include "Data/Level/GraphicTileLayer.h"
+#include "GraphicTileLayer.h"
+
+#include "Data/Level/BattleCamp.h"
+
 #include "Data/Level/TileMap.h"
 
 
@@ -16,21 +18,18 @@
 
 struct Level
 {
-public:
-	static Level* loadLevelFromFile(const std::string& filePath);
-	static unsigned int retrieveIndexFromCoords(unsigned int x, unsigned int y, unsigned int z);
-
-private:
-	Level() {}
-
-	static void initMap();
-
-public:
+	GraphicTileLayer<MAX_W_MAP * MAX_H_MAP * MAX_Z_MAP> graphicTileLayer;
+	TileMap tileMap;
+	struct SDL_Texture* texture;
+	TileSet* tileSet;
 	Vector2i dim;
 	int maxZ;
 
-	TileMap tileMap;
-	GraphicTileLayer<MAX_W_MAP * MAX_H_MAP * MAX_Z_MAP> graphicTileLayer;
+	BattleCamp battleCamp;
 
-	TileSet* tileSet;
+	std::vector<GroupEntity<>> groupsEntities;
 };
+
+
+
+Level levelWrapper(const std::string& path);

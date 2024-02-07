@@ -2,13 +2,18 @@
 
 #include <vector>
 
+//Include all the Tile
+#include "Data/Level/UniqueTile.h"
+#include "Data/Level/ChestTile.h"
+//Include all the Tile
+
 
 
 
 
 enum LogicType
 {
-	NoneLogicType = -1,
+	NoneLogicType=-1,
 	Ground,
 	Wall,
 	Sea,
@@ -29,8 +34,8 @@ enum EntityOccupier
 
 struct Tile
 {
-	short int logicType = LogicType::NoneLogicType;
-	bool visible = false;
+	short int logicType=-1;
+	bool visible;
 };
 
 
@@ -42,4 +47,6 @@ struct TileMap
 {
 	std::vector<Tile> tiles;
 	std::vector<int> mappedEntities;
+
+	std::vector<struct UniqueTile*> uniqueTiles;
 };
