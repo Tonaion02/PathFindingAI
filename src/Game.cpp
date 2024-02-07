@@ -334,6 +334,16 @@ void Game::loadData()
 
 			TileSystem::unRegisterPos({ (int)x, (int)x }, z);
 			TileSystem::registerPos(getCmpEntity(world->mPoolTransformComponent, e).pos, z, e);
+
+
+
+			registerEntity(world->mPoolBaseEnemyComponent, e);
+
+			std::vector<Direction> path;
+			path.push_back(Direction::Right);
+			path.push_back(Direction::Right);
+
+			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path;
 		}
 
 

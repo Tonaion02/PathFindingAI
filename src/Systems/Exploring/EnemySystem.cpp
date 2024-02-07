@@ -82,75 +82,11 @@ void EnemySystem::aiBaseEnemy()
 					//Search the player beetween the range of view of the enemy
 					bool found = false;
 
-					for (int add = 1; add < BaseEnemyCmp.mPackedArray[i].viewDistance + 1; add++)
-					{
-						//Calculate pos to controll on the base of direction
-						Vector2i pos = startPos;
-
-						switch (MoveCmp.mPackedArray[MoveCmp.mReverseArray[e]].lastDirection)
-						{
-						case Up:
-							pos.y -= add;
-							break;
-						case Down:
-							pos.y += add;
-							break;
-						case Right:
-							pos.x += add;
-							break;
-						case Left:
-							pos.x -= add;
-							break;
-						default:
-							break;
-						}
-						//Calculate pos to controll on the base of direction
+					
 
 
-
-						//Controll validity of the calculated pos
-						if (pos.x < 0 || pos.y < 0 || pos.x >= currentLevel->dim.x || pos.y >= currentLevel->dim.y)
-							break;
-						//Controll validity of the calculated pos
-
-
-
-						//Controll if in that pos there is player
-						if (currentLevel->tileMap.mappedEntities[currentLevel->dim.y * currentLevel->dim.x * z + currentLevel->dim.x * pos.y + pos.x] == PlayerOccupier)
-						{
-							found = true;
-							world->battleEntities.push_back(e);
-							
-							//Create entity for allerting animation
-							Entity allertingEntity = createEntityId();
-
-							//Init allertingEntity for the animation of allerting
-							registerEntity(TransformCmp, allertingEntity);
-							//TransformCmp->mPackedArray[TransformCmp->mReverseArray[allertingEntity]].pos = TransformCmp->mPackedArray[TransformCmp->mReverseArray[e]].pos;
-							getCmpEntity(TransformCmp, allertingEntity).pos = getCmpEntity(TransformCmp, e).pos;
-							//TransformCmp->mPackedArray[TransformCmp->mReverseArray[allertingEntity]].pos.y -= 1;
-							getCmpEntity(TransformCmp, allertingEntity).pos.y -= 1;
-							//TransformCmp->mPackedArray[TransformCmp->mReverseArray[allertingEntity]].z = TransformCmp->mPackedArray[TransformCmp->mReverseArray[e]].z;
-							getCmpEntity(TransformCmp, allertingEntity).z = getCmpEntity(TransformCmp, e).z;
-							registerEntity(world->mPoolDrawComponent, allertingEntity);
-							//world->mPoolDrawComponent.mPackedArray[world->mPoolDrawComponent.mReverseArray[allertingEntity]].id = 117;
-							getCmpEntity(world->mPoolDrawComponent, allertingEntity).id = 117;
-							start(&world->delayTransictionToBattle);
-							//Init allertingEntity for the animation of allerting
-
-							world->allertingEntities.push_back(allertingEntity);
-
-							//Register Entity to a group
-							registerEntity(world->currentLevel.groupsEntities[getCmpEntity(world->mPoolTransformComponent, e).z], allertingEntity);
-							//Register Entity to a group
-
-							//Create entity for allerting animation
-
-							break;
-						}
-						//Controll if in that pos there is player
-					}
 					//Search the player beetween the range of view of the enemy
+
 
 
 
