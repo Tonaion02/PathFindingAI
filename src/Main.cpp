@@ -1,20 +1,13 @@
 #include <stdio.h>
 
-#include "Window/WindowHandler.h"
-
+#include "Game.h"
 
 
 
 
 int main()
 {
-	WindowHandler::get();
-
-
-
-	while (true);
-
-
-
+	Game game;
+	game.run();
 	return 0;
 }
