@@ -7,7 +7,6 @@
 
 int main()
 {
-	Game game;
-	game.run();
+	Game::get().run();
 	return 0;
 }
