@@ -4,8 +4,10 @@
 #include <vector>
 
 #include "Math/Vector2i.h"
-#include "Data/Level/GraphicTileLayer.h"
 
+#include "TileSet/TileSet.h"
+
+#include "Data/Level/GraphicTileLayer.h"
 #include "Data/Level/TileMap.h"
 
 
@@ -29,4 +31,6 @@ public:
 
 	TileMap tileMap;
 	GraphicTileLayer<MAX_W_MAP * MAX_H_MAP * MAX_Z_MAP> graphicTileLayer;
+
+	TileSet* tileSet;
 };

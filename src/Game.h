@@ -17,6 +17,9 @@ public:
 
 	void run();
 
+	TileSetHandler* getTileSetHandler() const;
+	Level* getCurrentLevel() const;
+
 private:
 	void init();
 	void loadData();
@@ -27,10 +30,11 @@ private:
 	Game() {}
 
 public:
-	const std::string baseDataPath = "data/";
+	static const std::string baseDataPath;
 
-	const std::string levelFilePath = "data/level0.tmx";
+	static const std::string levelFilePath;
 
 private:
 	struct Level* currentLevel;
+	class TileSetHandler* tileSetHandler;
 };

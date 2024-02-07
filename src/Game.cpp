@@ -4,6 +4,8 @@
 
 #include "Window/WindowHandler.h"
 
+#include "TextureHandler/TextureHandler.h"
+
 
 
 
@@ -11,6 +13,14 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Class Game
 //-----------------------------------------------------------------------------------------------------------------------------------------
+const std::string Game::baseDataPath = "data/";
+
+const std::string Game::levelFilePath = "data/stressTestLevel.tmx";
+
+
+
+
+
 void Game::update()
 {
 
@@ -47,6 +57,12 @@ void Game::processInput()
 
 void Game::loadData()
 {
+	int tileDim = 32;
+
+	tileSetHandler = new TileSetHandler();
+
+	tileSetHandler->loadTileSet("data/buch-outdoor.png", tileDim);
+
 	currentLevel = Level::loadLevelFromFile(Game::levelFilePath);
 	SDL_Log("");
 }
@@ -56,6 +72,8 @@ void Game::loadData()
 void Game::init()
 {
 	WindowHandler::get();
+
+	TextureHandler::get();
 }
 
 
@@ -71,6 +89,19 @@ void Game::run()
 		update();
 		draw();
 	}
+}
+
+
+
+
+TileSetHandler * Game::getTileSetHandler() const
+{
+	return tileSetHandler;
+}
+
+Level * Game::getCurrentLevel() const
+{
+	return currentLevel;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Class Game
