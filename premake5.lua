@@ -31,7 +31,8 @@ project "PathFindingAI"
 
     cppdialect "C++11"
 
-    SDL_Lib = "C:/SDL_Lib/"
+    --SDL_Lib = "C:/SDL_Lib/"
+    SDL_Lib = _OPTIONS["SDL_dir"] or "C:/SDL_Lib/"
 	SDL_Librev = "C:\\SDL_Lib\\"
 
     includedirs
