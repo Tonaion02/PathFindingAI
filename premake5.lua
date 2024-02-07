@@ -36,6 +36,7 @@ project "PathFindingAI"
 
     includedirs
     {
+        "src",
         SDL_Lib .. "SDL2/include",
         SDL_Lib .. "SDL2_image/include",
         SDL_Lib .. "SDL2_ttf/include",
