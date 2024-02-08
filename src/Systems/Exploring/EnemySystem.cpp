@@ -185,47 +185,6 @@ void EnemySystem::aiBaseEnemy()
 							ebp -= 1;
 						}
 					}
-
-
-
-
-
-
-					////Only down direction
-					//unsigned int halfTriangleBase = (triangleBase - 1) / 2;
-					//Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
-					//Vector2i startBasePos = centerOfTriangleBase;
-					//startBasePos.x -= halfTriangleBase;
-					//Vector2i endBasePos = centerOfTriangleBase;
-					//endBasePos.x += halfTriangleBase;
-					//
-
-
-
-					//for (unsigned int d = 0; d < viewDistance; d++)
-					//{
-					//	if (startBasePos.x != endBasePos.x)
-					//	{
-					//		startBasePos.x += 1;
-					//		endBasePos.x -= 1;
-					//	}
-
-					//	Vector2i s, e;
-					//	s = startBasePos;
-					//	s.y -= d;
-					//	e = endBasePos;
-					//	e.y -= d;
-					//	while (s.x != e.x + 1) {
-
-					//		if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + s.y * currentLevel->dim.x + s.x]
-					//			== EntityOccupier::PlayerOccupier) 
-					//			found = true;
-
-					//		s.x += 1;
-					//	}
-					//}
-					////Only down direction
-
 					//Search the player beetween the range of view of the enemy
 
 

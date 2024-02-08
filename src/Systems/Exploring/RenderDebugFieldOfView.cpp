@@ -22,6 +22,10 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Class RenderDebugFieldOfViewSystem
 //-----------------------------------------------------------------------------------------------------------------------------------------
+const SDL_Color RenderDebugFieldOfView::color = { 255, 0, 0, 150 };
+
+
+
 void RenderDebugFieldOfView::render()
 {
 	World* world = Game::get()->getWorld();
@@ -29,7 +33,7 @@ void RenderDebugFieldOfView::render()
 
 
 	SDL_SetRenderDrawBlendMode(WindowHandler::get().getRenderer(), SDL_BLENDMODE_ADD);
-	SDL_SetRenderDrawColor(WindowHandler::get().getRenderer(), 150, 0, 0, 100);
+	SDL_SetRenderDrawColor(WindowHandler::get().getRenderer(), color.r, color.g, color.b, color.a);
 
 
 

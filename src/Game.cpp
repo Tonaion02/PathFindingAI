@@ -242,6 +242,12 @@ void Game::loadData()
 
 
 
+	//Define player
+	world->player = 1;
+	//Define player
+
+
+
 	//Load enemies
 	float x = 0.0f;
 	short int z = 0;
@@ -373,7 +379,7 @@ void Game::loadData()
 
 
 
-	world->player = 1;
+
 
 	TileSystem::unRegisterPos(getCmpEntity(world->mPoolTransformComponent, world->player).tileOccupied, z);
 	getCmpEntity(world->mPoolTransformComponent, world->player).pos = { 17.0f, 16.0f };
