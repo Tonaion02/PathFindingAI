@@ -86,6 +86,8 @@ void RenderDebugFieldOfView::render()
 					currentDirection = (Direction)getCmpEntity(MoveCmp, e).lastDirection;
 				//Retrieve direction of player
 
+				//On base of direction set initial value for initHp and initBp
+				//initHp and initBp describes the two coords of center of base of triangle
 				int initHp, initBp;
 				if (currentDirection == Direction::Down)
 				{
@@ -107,12 +109,18 @@ void RenderDebugFieldOfView::render()
 					initHp = startPos.x - viewDistance;
 					initBp = startPos.y;
 				}
+				//On base of direction set initial value for initHp and initBp
 
+				//Set initial value for sbp and ebp
+				//sbp: describes the starting coord for the base
+				//sbp: describes the ending coord for the base
 				int sbp, ebp;
 				sbp = initBp - halfTriangleBase;
 				ebp = initBp + halfTriangleBase;
+				//Set initial value for sbp and ebp
 
-
+				//Set sign on the base of direction
+				//sign: is used to sum or subtract progressive deep of fieldOfView on the base of direction
 				int sign = -1;
 				if (currentDirection == Direction::Down)
 					sign = -1;
@@ -122,7 +130,10 @@ void RenderDebugFieldOfView::render()
 					sign = -1;
 				else if (currentDirection == Direction::Left)
 					sign = 1;
+				//Set sign on the base of direction
 
+				//Loop on progessive deep of field
+				//The progressive deep of field is reppresented by d variable
 				for (unsigned int d = 0; d < viewDistance; d++)
 				{
 					int hp = initHp + d * sign;
@@ -133,11 +144,8 @@ void RenderDebugFieldOfView::render()
 					SDL_Rect rect;
 					rect.w = tileDim;
 					rect.h = tileDim;
-					/*rect.y = hp * tileDim;*/
 					while (s != e + 1)
 					{
-						//rect.x = s * tileDim;
-
 						if (currentDirection == Direction::Down)
 						{
 							rect.x = s * tileDim;
@@ -167,54 +175,15 @@ void RenderDebugFieldOfView::render()
 						s += 1;
 					}
 
+					//Until sbp and ebp(starting point and ending point of base of triangle) is the same, restrict the base
 					if (sbp != ebp)
 					{
 						sbp += 1;
 						ebp -= 1;
 					}
+					//Until sbp and ebp(starting point and ending point of base of triangle) is the same, restrict the base
 				}
-
-				//Only down direction
-				//unsigned int halfTriangleBase = (triangleBase - 1) / 2;
-				//Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
-				//Vector2i startBasePos = centerOfTriangleBase;
-				//startBasePos.x -= halfTriangleBase;
-				//Vector2i endBasePos = centerOfTriangleBase;
-				//endBasePos.x += halfTriangleBase;
-				
-
-
-				//SDL_Rect rect;
-				//rect.w = tileDim;
-				//rect.h = tileDim;
-				//for (unsigned int d = 0; d < viewDistance; d++)
-				//{
-				//	if (startBasePos.x != endBasePos.x)
-				//	{
-				//		startBasePos.x += 1;
-				//		endBasePos.x -= 1;
-				//	}
-
-				//	Vector2i s, e;
-				//	s = startBasePos;
-				//	s.y -= d;
-				//	e = endBasePos;
-				//	e.y -= d;
-				//	rect.y = s.y * tileDim;
-				//	while (s.x != e.x+1) {
-				//		rect.x = s.x * tileDim;
-
-				//		SDL_RenderFillRect(WindowHandler::get().getRenderer(), &rect);
-
-				//		s.x += 1;
-				//	}
-				//}
-				//Only down direction
-
-
-
-
-
+				//Loop on progessive deep of field
 
 
 				//Render all the tile where the player is searched 
