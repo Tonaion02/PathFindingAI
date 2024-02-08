@@ -72,12 +72,14 @@ void RenderDebugFieldOfView::render()
 					triangleBase -= 1;
 				//Compute triangle's base of view
 
-
+				//Compute half of triangle base
 				unsigned int halfTriangleBase = (triangleBase - 1) / 2;
 				
+				//Retrieve direction of player
 				Direction currentDirection = (Direction)getCmpEntity(MoveCmp, e).currentDirection;
 				if (currentDirection == Direction::NoneDirection)
 					currentDirection = (Direction)getCmpEntity(MoveCmp, e).lastDirection;
+				//Retrieve direction of player
 
 				int initHp, initBp;
 				if (currentDirection == Direction::Down)

@@ -92,41 +92,138 @@ void EnemySystem::aiBaseEnemy()
 					//Compute triangleBase
 					unsigned int triangleBase = computeTriangleBase(viewDistance);
 					
-
-					//Only down direction
+					//Compute half of triangleBase
 					unsigned int halfTriangleBase = (triangleBase - 1) / 2;
-					Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
-					Vector2i startBasePos = centerOfTriangleBase;
-					startBasePos.x -= halfTriangleBase;
-					Vector2i endBasePos = centerOfTriangleBase;
-					endBasePos.x += halfTriangleBase;
-					
+
+					//Retrieve direction of player
+					Direction currentDirection = (Direction)getCmpEntity(MoveCmp, e).currentDirection;
+					if (currentDirection == Direction::NoneDirection)
+						currentDirection = (Direction)getCmpEntity(MoveCmp, e).lastDirection;
+					//Retrieve direction of player
+
+					int initHp, initBp;
+					if (currentDirection == Direction::Down)
+					{
+						initHp = startPos.y + viewDistance;
+						initBp = startPos.x;
+					}
+					else if (currentDirection == Direction::Up)
+					{
+						initHp = startPos.y - viewDistance;
+						initBp = startPos.x;
+					}
+					else if (currentDirection == Direction::Right)
+					{
+						initHp = startPos.x + viewDistance;
+						initBp = startPos.y;
+					}
+					else if (currentDirection == Direction::Left)
+					{
+						initHp = startPos.x - viewDistance;
+						initBp = startPos.y;
+					}
+
+					int sbp, ebp;
+					sbp = initBp - halfTriangleBase;
+					ebp = initBp + halfTriangleBase;
 
 
+					int sign = -1;
+					if (currentDirection == Direction::Down)
+						sign = -1;
+					else if (currentDirection == Direction::Up)
+						sign = 1;
+					else if (currentDirection == Direction::Right)
+						sign = -1;
+					else if (currentDirection == Direction::Left)
+						sign = 1;
 
+					Vector2i p;
 					for (unsigned int d = 0; d < viewDistance; d++)
 					{
-						if (startBasePos.x != endBasePos.x)
+						int hp = initHp + d * sign;
+
+						int s, e;
+						s = sbp;
+						e = ebp;
+						while (s != e + 1)
 						{
-							startBasePos.x += 1;
-							endBasePos.x -= 1;
+							if (currentDirection == Direction::Down)
+							{
+								p = { s, hp };
+							}
+							else if (currentDirection == Direction::Up)
+							{
+								p = { s, hp };
+							}
+							else if (currentDirection == Direction::Right)
+							{
+								p = { hp, s };
+							}
+							else if (currentDirection == Direction::Left)
+							{
+								p = { hp, s };
+							}
+
+							if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
+								== EntityOccupier::PlayerOccupier)
+							{
+								found = true;
+								break;
+							}
+
+							s += 1;
 						}
 
-						Vector2i s, e;
-						s = startBasePos;
-						s.y -= d;
-						e = endBasePos;
-						e.y -= d;
-						while (s.x != e.x + 1) {
+						if (found == true)
+							break;
 
-							if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + s.y * currentLevel->dim.x + s.x]
-								== EntityOccupier::PlayerOccupier) 
-								found = true;
-
-							s.x += 1;
+						if (sbp != ebp)
+						{
+							sbp += 1;
+							ebp -= 1;
 						}
 					}
-					//Only down direction
+
+
+
+
+
+
+					////Only down direction
+					//unsigned int halfTriangleBase = (triangleBase - 1) / 2;
+					//Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
+					//Vector2i startBasePos = centerOfTriangleBase;
+					//startBasePos.x -= halfTriangleBase;
+					//Vector2i endBasePos = centerOfTriangleBase;
+					//endBasePos.x += halfTriangleBase;
+					//
+
+
+
+					//for (unsigned int d = 0; d < viewDistance; d++)
+					//{
+					//	if (startBasePos.x != endBasePos.x)
+					//	{
+					//		startBasePos.x += 1;
+					//		endBasePos.x -= 1;
+					//	}
+
+					//	Vector2i s, e;
+					//	s = startBasePos;
+					//	s.y -= d;
+					//	e = endBasePos;
+					//	e.y -= d;
+					//	while (s.x != e.x + 1) {
+
+					//		if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + s.y * currentLevel->dim.x + s.x]
+					//			== EntityOccupier::PlayerOccupier) 
+					//			found = true;
+
+					//		s.x += 1;
+					//	}
+					//}
+					////Only down direction
 
 					//Search the player beetween the range of view of the enemy
 
