@@ -48,7 +48,7 @@ void EnemySystem::init()
 	for (unsigned int i = 0; i < BaseEnemyCmp.mNext; i++)
 	{
 		BaseEnemyCmp.mPackedArray[i].alive = true;
-		BaseEnemyCmp.mPackedArray[i].viewDistance = 7;
+		BaseEnemyCmp.mPackedArray[i].viewDistance = 5;
 		BaseEnemyCmp.mPackedArray[i].currentStepPath = 0;
 		MoveCmp.mPackedArray[i].lastDirection = BaseEnemyCmp.mPackedArray[i].path[0];
 	}
@@ -104,18 +104,44 @@ void EnemySystem::aiBaseEnemy()
 
 					//Only down direction
 					unsigned int halfTriangleBase = (triangleBase - 1) / 2;
-					Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance)};
+					Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
 					Vector2i startBasePos = centerOfTriangleBase;
 					startBasePos.x -= halfTriangleBase;
 					Vector2i endBasePos = centerOfTriangleBase;
 					endBasePos.x += halfTriangleBase;
 					//Only down direction
 
+
+
+					for (unsigned int d = 0; d < viewDistance; d++)
+					{
+						if (startBasePos.x != endBasePos.x)
+						{
+							startBasePos.x += 1;
+							endBasePos.x -= 1;
+						}
+
+						Vector2i s, e;
+						s = startBasePos;
+						s.y -= d;
+						e = endBasePos;
+						e.y -= d;
+						while (s.x != e.x + 1) {
+
+							if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + s.y * currentLevel->dim.x + s.x]
+								== EntityOccupier::PlayerOccupier) 
+								found = true;
+
+							s.x += 1;
+						}
+					}
 					//Search the player beetween the range of view of the enemy
 
+					if (found)
+						SDL_Log("TROVATO PORCODIO");
 
 
-
+					//If can't see the player, idle logic
 					if (!found)
 					{
 						//Start an action if enemies not found the player
@@ -132,6 +158,7 @@ void EnemySystem::aiBaseEnemy()
 
 						//Start an action if enemies not found the player
 					}
+					//If can't see the player, idle logic
 				}
 			}
 		}

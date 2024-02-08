@@ -78,7 +78,7 @@ void RenderDebugFieldOfView::render()
 				unsigned int halfTriangleBase = (triangleBase - 1) / 2;
 				Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
 				Vector2i startBasePos = centerOfTriangleBase;
-				startBasePos.x -= halfTriangleBase +1;
+				startBasePos.x -= halfTriangleBase;
 				Vector2i endBasePos = centerOfTriangleBase;
 				endBasePos.x += halfTriangleBase;
 				
@@ -101,12 +101,13 @@ void RenderDebugFieldOfView::render()
 					e = endBasePos;
 					e.y -= d;
 					rect.y = s.y * tileDim;
-					do {
-						s.x += 1;
+					while (s.x != e.x+1) {
 						rect.x = s.x * tileDim;
 
 						SDL_RenderFillRect(WindowHandler::get().getRenderer(), &rect);
-					} while (s.x != e.x);
+
+						s.x += 1;
+					}
 				}
 				//Only down direction
 

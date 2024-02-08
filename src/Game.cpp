@@ -326,7 +326,7 @@ void Game::loadData()
 
 		if (e == 3)
 		{
-			getCmpEntity(world->mPoolTransformComponent, e).pos = { 27, 20 };
+			getCmpEntity(world->mPoolTransformComponent, e).pos = { 30, 20 };
 			getCmpEntity(world->mPoolTransformComponent, e).tileOccupied = getCmpEntity(world->mPoolTransformComponent, e).pos;
 			getCmpEntity(world->mPoolTransformComponent, e).z = z;
 			registerEntity(world->mPoolDrawComponent, e);
