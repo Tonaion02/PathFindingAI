@@ -28,6 +28,8 @@ struct Level
 	BattleCamp battleCamp;
 
 	std::vector<GroupEntity<>> groupsEntities;
+
+	static bool isInLevel(const Level& level, int x, int y, int z);
 };
 
 

@@ -165,7 +165,8 @@ void EnemySystem::aiBaseEnemy()
 								p = { hp, s };
 							}
 
-							if (currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
+							if (Level::isInLevel(*currentLevel, p.x, p.y, z) && 
+								currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
 								== EntityOccupier::PlayerOccupier)
 							{
 								found = true;
