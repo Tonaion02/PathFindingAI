@@ -29,6 +29,8 @@
 #include "Systems/Exploring/ActionSystem.h"
 #include "Systems/Exploring/EnemySystem.h"
 #include "Systems/Exploring/RenderSystem.h"
+
+#include "Systems/Exploring/RenderDebugFieldOfView.h"
 //Including Systems
 
 
@@ -98,6 +100,8 @@ void ExploringScene::generateOutputScene()
 	//Prepare rendering
 	RenderSystem::draw();
 	//Prepare rendering
+
+	RenderDebugFieldOfView::render();
 }
 
 

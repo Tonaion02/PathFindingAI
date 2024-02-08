@@ -340,8 +340,8 @@ void Game::loadData()
 			registerEntity(world->mPoolBaseEnemyComponent, e);
 
 			std::vector<Direction> path;
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Right);
+			path.push_back(Direction::Down);
+			path.push_back(Direction::Down);
 
 			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path;
 		}

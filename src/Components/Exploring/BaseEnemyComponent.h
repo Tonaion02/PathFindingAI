@@ -11,7 +11,10 @@
 struct BaseEnemyComponent
 {
 	bool alive;
-	int viewDistance;
+	
+	unsigned int viewDistance;
+	
+	
 	std::vector<Direction> path;
 	int currentStepPath;
 };

@@ -33,6 +33,10 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Class EnemySystem
 //-----------------------------------------------------------------------------------------------------------------------------------------
+const unsigned int EnemySystem::angleView = 110;
+
+
+
 void EnemySystem::init()
 {
 	World* world = Game::get()->getWorld();
@@ -44,7 +48,7 @@ void EnemySystem::init()
 	for (unsigned int i = 0; i < BaseEnemyCmp.mNext; i++)
 	{
 		BaseEnemyCmp.mPackedArray[i].alive = true;
-		BaseEnemyCmp.mPackedArray[i].viewDistance = 3;
+		BaseEnemyCmp.mPackedArray[i].viewDistance = 7;
 		BaseEnemyCmp.mPackedArray[i].currentStepPath = 0;
 		MoveCmp.mPackedArray[i].lastDirection = BaseEnemyCmp.mPackedArray[i].path[0];
 	}
@@ -82,8 +86,30 @@ void EnemySystem::aiBaseEnemy()
 					//Search the player beetween the range of view of the enemy
 					bool found = false;
 
-					
+					unsigned int viewDistance = getCmpEntity(BaseEnemyCmp, e).viewDistance;
 
+					//Compute triangle's base of view
+					float angle = 90.0f - (EnemySystem::angleView / 2.0f);
+					float rad = ToRadians(angle);
+					float t = tanf(ToRadians(angle));
+					float triangleBasef = viewDistance / abs(tanf(ToRadians(angle)));
+					triangleBasef *= 2.0f;
+					triangleBasef = roundf(triangleBasef);
+					unsigned int triangleBase = static_cast<unsigned int>(triangleBasef);
+					if (triangleBase % 2 == 0)
+						triangleBase -= 1;
+					//Compute triangle's base of view
+
+
+
+					//Only down direction
+					unsigned int halfTriangleBase = (triangleBase - 1) / 2;
+					Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance)};
+					Vector2i startBasePos = centerOfTriangleBase;
+					startBasePos.x -= halfTriangleBase;
+					Vector2i endBasePos = centerOfTriangleBase;
+					endBasePos.x += halfTriangleBase;
+					//Only down direction
 
 					//Search the player beetween the range of view of the enemy
 
