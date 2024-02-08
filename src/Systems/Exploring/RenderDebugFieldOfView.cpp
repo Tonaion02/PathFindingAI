@@ -73,43 +73,137 @@ void RenderDebugFieldOfView::render()
 				//Compute triangle's base of view
 
 
-
-				//Only down direction
 				unsigned int halfTriangleBase = (triangleBase - 1) / 2;
-				Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
-				Vector2i startBasePos = centerOfTriangleBase;
-				startBasePos.x -= halfTriangleBase;
-				Vector2i endBasePos = centerOfTriangleBase;
-				endBasePos.x += halfTriangleBase;
 				
+				Direction currentDirection = (Direction)getCmpEntity(MoveCmp, e).currentDirection;
+				if (currentDirection == Direction::NoneDirection)
+					currentDirection = (Direction)getCmpEntity(MoveCmp, e).lastDirection;
+
+				int initHp, initBp;
+				if (currentDirection == Direction::Down)
+				{
+					initHp = startPos.y + viewDistance;
+					initBp = startPos.x;
+				}
+				else if (currentDirection == Direction::Up)
+				{
+					initHp = startPos.y - viewDistance;
+					initBp = startPos.x;
+				}
+				else if (currentDirection == Direction::Right)
+				{
+					initHp = startPos.x + viewDistance;
+					initBp = startPos.y;
+				}
+				else if (currentDirection == Direction::Left)
+				{
+					initHp = startPos.x - viewDistance;
+					initBp = startPos.y;
+				}
+
+				int sbp, ebp;
+				sbp = initBp - halfTriangleBase;
+				ebp = initBp + halfTriangleBase;
 
 
-				SDL_Rect rect;
-				rect.w = tileDim;
-				rect.h = tileDim;
+				int sign = -1;
+				if (currentDirection == Direction::Down)
+					sign = -1;
+				else if (currentDirection == Direction::Up)
+					sign = 1;
+				else if (currentDirection == Direction::Right)
+					sign = -1;
+				else if (currentDirection == Direction::Left)
+					sign = 1;
+
 				for (unsigned int d = 0; d < viewDistance; d++)
 				{
-					if (startBasePos.x != endBasePos.x)
-					{
-						startBasePos.x += 1;
-						endBasePos.x -= 1;
-					}
+					int hp = initHp + d * sign;
 
-					Vector2i s, e;
-					s = startBasePos;
-					s.y -= d;
-					e = endBasePos;
-					e.y -= d;
-					rect.y = s.y * tileDim;
-					while (s.x != e.x+1) {
-						rect.x = s.x * tileDim;
+					int s, e;
+					s = sbp;
+					e = ebp;
+					SDL_Rect rect;
+					rect.w = tileDim;
+					rect.h = tileDim;
+					/*rect.y = hp * tileDim;*/
+					while (s != e + 1)
+					{
+						//rect.x = s * tileDim;
+
+						if (currentDirection == Direction::Down)
+						{
+							rect.x = s * tileDim;
+							rect.y = hp * tileDim;
+						}
+						else if (currentDirection == Direction::Up)
+						{
+							rect.x = s * tileDim;
+							rect.y = hp * tileDim;
+						}
+						else if (currentDirection == Direction::Right)
+						{
+							rect.y = s * tileDim;
+							rect.x = hp * tileDim;
+						}
+						else if (currentDirection == Direction::Left)
+						{
+							rect.y = s * tileDim;
+							rect.x = hp * tileDim;
+						}
 
 						SDL_RenderFillRect(WindowHandler::get().getRenderer(), &rect);
 
-						s.x += 1;
+						s += 1;
+					}
+
+					if (sbp != ebp)
+					{
+						sbp += 1;
+						ebp -= 1;
 					}
 				}
+
 				//Only down direction
+				//unsigned int halfTriangleBase = (triangleBase - 1) / 2;
+				//Vector2i centerOfTriangleBase = { startPos.x, startPos.y + static_cast<int>(viewDistance) };
+				//Vector2i startBasePos = centerOfTriangleBase;
+				//startBasePos.x -= halfTriangleBase;
+				//Vector2i endBasePos = centerOfTriangleBase;
+				//endBasePos.x += halfTriangleBase;
+				
+
+
+				//SDL_Rect rect;
+				//rect.w = tileDim;
+				//rect.h = tileDim;
+				//for (unsigned int d = 0; d < viewDistance; d++)
+				//{
+				//	if (startBasePos.x != endBasePos.x)
+				//	{
+				//		startBasePos.x += 1;
+				//		endBasePos.x -= 1;
+				//	}
+
+				//	Vector2i s, e;
+				//	s = startBasePos;
+				//	s.y -= d;
+				//	e = endBasePos;
+				//	e.y -= d;
+				//	rect.y = s.y * tileDim;
+				//	while (s.x != e.x+1) {
+				//		rect.x = s.x * tileDim;
+
+				//		SDL_RenderFillRect(WindowHandler::get().getRenderer(), &rect);
+
+				//		s.x += 1;
+				//	}
+				//}
+				//Only down direction
+
+
+
+
 
 
 

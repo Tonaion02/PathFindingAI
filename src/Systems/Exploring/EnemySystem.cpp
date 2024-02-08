@@ -86,21 +86,12 @@ void EnemySystem::aiBaseEnemy()
 					//Search the player beetween the range of view of the enemy
 					bool found = false;
 
+					//Retrieve viewDistance
 					unsigned int viewDistance = getCmpEntity(BaseEnemyCmp, e).viewDistance;
 
-					//Compute triangle's base of view
-					float angle = 90.0f - (EnemySystem::angleView / 2.0f);
-					float rad = ToRadians(angle);
-					float t = tanf(ToRadians(angle));
-					float triangleBasef = viewDistance / abs(tanf(ToRadians(angle)));
-					triangleBasef *= 2.0f;
-					triangleBasef = roundf(triangleBasef);
-					unsigned int triangleBase = static_cast<unsigned int>(triangleBasef);
-					if (triangleBase % 2 == 0)
-						triangleBase -= 1;
-					//Compute triangle's base of view
-
-
+					//Compute triangleBase
+					unsigned int triangleBase = computeTriangleBase(viewDistance);
+					
 
 					//Only down direction
 					unsigned int halfTriangleBase = (triangleBase - 1) / 2;
@@ -109,7 +100,7 @@ void EnemySystem::aiBaseEnemy()
 					startBasePos.x -= halfTriangleBase;
 					Vector2i endBasePos = centerOfTriangleBase;
 					endBasePos.x += halfTriangleBase;
-					//Only down direction
+					
 
 
 
@@ -135,10 +126,17 @@ void EnemySystem::aiBaseEnemy()
 							s.x += 1;
 						}
 					}
+					//Only down direction
+
 					//Search the player beetween the range of view of the enemy
 
+
+
+					//If see the player
 					if (found)
 						SDL_Log("TROVATO PORCODIO");
+					//If see the player
+
 
 
 					//If can't see the player, idle logic
@@ -201,6 +199,23 @@ void EnemySystem::reversePath(Entity e)
 	}
 
 	BaseEnemyCmp.mPackedArray[BaseEnemyCmp.mReverseArray[e]].currentStepPath = 0;
+}
+
+
+
+unsigned int EnemySystem::computeTriangleBase(int viewDistance)
+{
+	float angle = 90.0f - (EnemySystem::angleView / 2.0f);
+	float rad = ToRadians(angle);
+	float t = tanf(ToRadians(angle));
+	float triangleBasef = viewDistance / abs(tanf(ToRadians(angle)));
+	triangleBasef *= 2.0f;
+	triangleBasef = roundf(triangleBasef);
+	unsigned int triangleBase = static_cast<unsigned int>(triangleBasef);
+	if (triangleBase % 2 == 0)
+		triangleBase -= 1;
+
+	return triangleBase;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Class EnemySystem
