@@ -40,6 +40,7 @@ void RenderDebugFieldOfView::render()
 	Level* currentLevel = &world->currentLevel;
 
 	float baseScale = world->cameraData.baseScale;
+	Vector2i adj = world->cameraData.adj;
 
 	int tileDim = static_cast<int>(currentLevel->tileSet->tileDim.x * baseScale);
 
@@ -157,6 +158,9 @@ void RenderDebugFieldOfView::render()
 							rect.y = s * tileDim;
 							rect.x = hp * tileDim;
 						}
+
+						rect.x += adj.x;
+						rect.y += adj.y;
 
 						SDL_RenderFillRect(WindowHandler::get().getRenderer(), &rect);
 
