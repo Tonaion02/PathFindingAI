@@ -28,13 +28,6 @@ std::array<int, 4> PathFindingSystem::dy = { 0, 1, 0, -1 };
 
 
 
-struct ComparePathNode
-{
-	bool operator()(PathNode* l, PathNode* r)
-	{
-		return l->cost + l->estimation > r->cost + r->estimation;
-	}
-};
 
 
 class MinHeap
@@ -141,9 +134,11 @@ void PathFindingSystem::initGraph()
 {
 	World* world = Game::get()->getWorld();
 
+	//Set size of graph and explored matrix
 	world->graph.nextNode = 0;
 	world->graph.pathNodes.resize(MAX_H_MAP * MAX_W_MAP);
 	world->graph.visited.resize(MAX_H_MAP * MAX_W_MAP);
+	//Set size of graph and explored matrix
 }
 
 
@@ -155,105 +150,87 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	Level& currentLevel = world->currentLevel;
 
 
+
 	//Reset graph struct
 	graph.nextNode = 0;
 	std::fill(world->graph.visited.begin(), world->graph.visited.end(), false);
 	//Reset graph struct
 
 
+	//Create MinHeap
 	MinHeap minHeap(MAX_H_MAP * MAX_W_MAP);
-	PathNode& pathNode = graph.pathNodes[graph.nextNode];
+	//Create MinHeap
 	
+	//Create first node to explore and add to heap
+	PathNode& pathNode = graph.pathNodes[graph.nextNode];
 	pathNode.cost = 0.0f;
 	pathNode.estimation = (*estimation)(start, end);
 	pathNode.parent = nullptr;
 	pathNode.pos = start;
 	minHeap.insert(&pathNode);
-	
-	//graph.nextNode++;
-	//PathNode& testNode = graph.pathNodes[graph.nextNode];
-	//testNode.cost = 0.0f;
-	//testNode.estimation = 1.0f;
-	//testNode.pos = start;
-	//testNode.pos.x += 1;
-	//minHeap.insert(&testNode);
-
-	//graph.nextNode++;
-	//PathNode& testNode2 = graph.pathNodes[graph.nextNode];
-	//testNode2.cost = 0.0f;
-	//testNode2.estimation = 2.0f;
-	//testNode2.pos = start;
-	//testNode2.pos.y += 1;
-	//minHeap.insert(&testNode2);
-
 	graph.nextNode++;
-	
+	//Create first node to explore and add to heap
 
+
+
+	//Until the heap is empty loop
 	while (!minHeap.empty())
 	{
-		
-		//int index = minHeap.find({ 1, 10 });
-
-		//PathNode* currentNode = minHeap.top();
-		//minHeap.pop();
-
-		//PathNode* testNode = minHeap.top();
-		//minHeap.pop();
-
-		//PathNode* testNode2p = minHeap.top();
-		//minHeap.pop();
-
-		//
-
-		//SDL_Log(std::to_string(*currentNode > *testNode).c_str());
-
+		//Retrieve node on top of heap and pop from heap that node
 		PathNode& currentNode = *minHeap.top();
 		minHeap.pop();
+		//Retrieve node on top of heap and pop from heap that node
 
+		//Check if you reach the end position, in case return the current node
 		if (currentNode.pos.x == end.x && currentNode.pos.y == end.y)
 		{
 			return &currentNode;
 		}
+		//Check if you reach the end position, in case return the current node
 
+		//Set to explored the current node
 		graph.visited[currentNode.pos.x + currentNode.pos.y * world->currentLevel.dim.x] = true;
+		//Set to explored the current node
 
 
 
 		Vector2i nextNodePos;
 		for (int i = 0; i < dx.size(); i++)
 		{
+			//Compute the position of the nextNode to evalue
 			nextNodePos.x = currentNode.pos.x + dx[i];
 			nextNodePos.y = currentNode.pos.y + dy[i];
+			//Compute the position of the nextNode to evalue
 
 
 
+			//if the nextNodePos is not a valid position for the current level, or the tile is not navigable, skip this node
 			if (Level::isInLevel(currentLevel, nextNodePos.x, nextNodePos.y) == false
 				|| currentLevel.tileMap.tiles[currentLevel.dim.x * nextNodePos.y + nextNodePos.x].logicType == LogicType::Wall)
 				continue;
+			//if the nextNodePos is not a valid position for the current level, or the tile is not navigable, skip this node
 
 
 
+			//Search a node with nextNodePos in heap
+			int found = minHeap.find(nextNodePos);
+			//Search a node with nextNodePos in heap
 
-			//Aggiornamento
-			if (minHeap.find(nextNodePos) != -1)
+			//If found a node with nextNodePos in the heap, update cost, estimation and father if found a shorter path
+			if (found != -1)
 			{
 				PathNode nextNode;
-				nextNode.pos = nextNodePos;
+				int index = found;
 
-				int index = minHeap.find(nextNodePos);
-				if (index != -1)
-				{
-					nextNode.parent = &currentNode;
-					nextNode.cost = currentNode.cost + 1;
-					nextNode.estimation = (*estimation)(nextNodePos, end);
+				nextNode.parent = &currentNode;
+				nextNode.cost = currentNode.cost + 1;
+				nextNode.estimation = (*estimation)(nextNodePos, end);
 
-					minHeap.updateKey(index, &nextNode);
-				}
+				minHeap.updateKey(index, &nextNode);
 			}
+			//If found a node with nextNodePos in the heap, update cost, estimation and father if found a shorter path
 
-			//Prima volta che lo vedo
-			int found = minHeap.find(nextNodePos);
-
+			//If the node is not explored and is not in the heap, add to the heap
 			if (graph.visited[nextNodePos.x + nextNodePos.y * world->currentLevel.dim.x] == false && found == -1)
 			{
 				PathNode* newNode = &graph.pathNodes[graph.nextNode];
@@ -265,8 +242,10 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 
 				minHeap.insert(newNode);
 			}
+			//If the node is not explored and is not in the heap, add to the heap
 		}
 	}
+	//Until the heap is empty loop
 
 	graph.nextNode = 0;
 

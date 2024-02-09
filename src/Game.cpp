@@ -560,11 +560,17 @@ void Game::loadData()
 	};
 
 
+	EuclideanDistance* ed = new EuclideanDistance();
+	PathNode* result = PathFindingSystem::findPath({ 5, 2 }, { 5, 6 }, ed);
+	free(ed);
 
-	PathNode* result = PathFindingSystem::findPath({ 1, 2 }, { 5, 6 }, new EuclideanDistance());
+
+	while (result != nullptr)
+	{
+		SDL_Log("(%d, %d)", result->pos.x, result->pos.y);
+		result = result->parent;
+	}
 	//Test pathFinding
-
-	int r = 0;
 
 	///FOR TESTING
 }
