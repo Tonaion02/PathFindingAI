@@ -28,4 +28,9 @@ struct PathNode
 	{
 		return this->cost + this->estimation > other.cost + other.estimation;
 	}
+
+	bool operator<(const PathNode& other) const
+	{
+		return !(*this > other);
+	}
 };

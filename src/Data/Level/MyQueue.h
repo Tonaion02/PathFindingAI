@@ -31,14 +31,4 @@ public:
 		}
 		return last;
 	}
-
-
-	void remove(T val) const
-	{
-		auto first = this->c.cbegin();
-		auto last = this->c.cend();
-		while (first != last) {
-
-		}
-	}
 };
