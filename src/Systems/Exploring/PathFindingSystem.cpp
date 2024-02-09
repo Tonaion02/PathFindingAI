@@ -156,7 +156,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Check if the tile where you start path finding is a valid position
 
 	//Check if the tile where you start path finding is a walkable tile
-	ASSERT(currentLevel.tileMap.tiles[start.x + start.y * currentLevel.dim.x].logicType == LogicType::Wall);
+	ASSERT(currentLevel.tileMap.tiles[start.x + start.y * currentLevel.dim.x].logicType != LogicType::Wall);
 	//Check if the tile where you start path finding is a walkable tile
 
 	//Check if the destination is a valid position
@@ -164,7 +164,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Check if the destination is a valid position
 
 	//Check if the destination is walkable 
-	if (currentLevel.tileMap.tiles[end.x + end.y * currentLevel.dim.x].logicType == LogicType::Wall)
+	if (currentLevel.tileMap.tiles[end.x + end.y * currentLevel.dim.x].logicType != LogicType::Wall)
 		return nullptr;
 	//Check if the destination is walkable
 
