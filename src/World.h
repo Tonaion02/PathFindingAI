@@ -39,6 +39,7 @@
 //Including some Data
 #include "Data/Level/Level.h"
 #include "Data/Camera/Camera.h"
+#include "Data/Level/Graph.h"
 //Including some Data
 
 
@@ -123,4 +124,8 @@ struct World
 	
 	Timer debugInfoTimer;
 	///FOR TESTING
+
+
+
+	Graph graph;
 };

@@ -324,6 +324,13 @@ bool Level::isInLevel(const Level& level, int x, int y, int z)
 {
 	return x >= 0 && y >= 0 && z >= 0 && x < level.dim.x && y < level.dim.y && z < level.maxZ;
 }
+
+
+
+bool Level::isInLevel(const Level & level, int x, int y)
+{
+	return x >= 0 && y >= 0 && x < level.dim.x && y < level.dim.y;
+}
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Struct Level
 //-----------------------------------------------------------------------------------------------------------------------------------------

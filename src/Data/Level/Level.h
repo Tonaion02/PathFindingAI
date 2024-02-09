@@ -30,6 +30,7 @@ struct Level
 	std::vector<GroupEntity<>> groupsEntities;
 
 	static bool isInLevel(const Level& level, int x, int y, int z);
+	static bool isInLevel(const Level& level, int x, int y);
 };
 
 

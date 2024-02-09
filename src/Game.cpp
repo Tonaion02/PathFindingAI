@@ -16,6 +16,7 @@
 #include "Systems/Exploring/AnimationSystem.h"
 #include "Systems/Exploring/TileSystem.h"
 #include "Systems/Exploring/EnemySystem.h"
+#include "Systems/Exploring/PathFindingSystem.h"
 
 //Including Battle System
 #include "Systems/Battle/BattleRenderSystem.h"
@@ -377,6 +378,10 @@ void Game::loadData()
 
 
 
+	//Init PathFindingSystem
+	PathFindingSystem::initGraph();
+	//Init PathFindingSystem
+
 
 
 
@@ -543,7 +548,9 @@ void Game::loadData()
 	//Init all system
 
 
-
+	//Test pathFinding
+	PathFindingSystem::findPath({1, 2}, {5, 6});
+	//Test pathFinding
 
 	///FOR TESTING
 }
