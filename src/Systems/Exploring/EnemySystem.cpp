@@ -208,8 +208,13 @@ void EnemySystem::aiBaseEnemy()
 
 
 					//If see the player
-					if (found)
+					if (found) {
 						SDL_Log("TROVATO PORCODIO");
+
+
+
+
+					}
 					//If see the player
 
 

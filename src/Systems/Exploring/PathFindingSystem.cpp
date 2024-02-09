@@ -164,9 +164,9 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Create first node to explore and add to heap
 	PathNode& pathNode = graph.pathNodes[graph.nextNode];
 	pathNode.cost = 0.0f;
-	pathNode.estimation = (*estimation)(start, end);
+	pathNode.estimation = (*estimation)(end, start);
 	pathNode.parent = nullptr;
-	pathNode.pos = start;
+	pathNode.pos = end;
 	minHeap.insert(&pathNode);
 	graph.nextNode++;
 	//Create first node to explore and add to heap
@@ -182,7 +182,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 		//Retrieve node on top of heap and pop from heap that node
 
 		//Check if you reach the end position, in case return the current node
-		if (currentNode.pos.x == end.x && currentNode.pos.y == end.y)
+		if (currentNode.pos.x == start.x && currentNode.pos.y == start.y)
 		{
 			return &currentNode;
 		}
@@ -224,7 +224,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 
 				nextNode.parent = &currentNode;
 				nextNode.cost = currentNode.cost + 1;
-				nextNode.estimation = (*estimation)(nextNodePos, end);
+				nextNode.estimation = (*estimation)(nextNodePos, start);
 
 				minHeap.updateKey(index, &nextNode);
 			}
@@ -237,7 +237,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 				graph.nextNode++;
 				newNode->pos = nextNodePos;
 				newNode->cost = currentNode.cost + 1;
-				newNode->estimation = (*estimation)(newNode->pos, end);
+				newNode->estimation = (*estimation)(newNode->pos, start);
 				newNode->parent = &currentNode;
 
 				minHeap.insert(newNode);

@@ -561,7 +561,7 @@ void Game::loadData()
 
 
 	EuclideanDistance* ed = new EuclideanDistance();
-	PathNode* result = PathFindingSystem::findPath({ 5, 2 }, { 5, 6 }, ed);
+	PathNode* result = PathFindingSystem::findPath({ 5, 6 }, { 2, 2 }, ed);
 	free(ed);
 
 
