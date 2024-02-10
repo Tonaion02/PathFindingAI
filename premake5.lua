@@ -1,4 +1,4 @@
-workspace "TiledMaker"
+workspace "PathFindingAI"
 	architecture "x64"
 
 	-- set the language
@@ -27,7 +27,7 @@ workspace "TiledMaker"
 
 
 
-project "TiledMaker"
+project "PathFindingAI"
     kind "ConsoleApp"
 
 
