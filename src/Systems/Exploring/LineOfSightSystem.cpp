@@ -15,6 +15,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------
 bool LineOfSightSystem::isVisible(const Vector2i& start, const Vector2i& end)
 {
+	std::vector<Vector2f> points;
+
 	World* world = Game::get()->getWorld();
 	Level* currentLevel = &world->currentLevel;
 
@@ -42,11 +44,23 @@ bool LineOfSightSystem::isVisible(const Vector2i& start, const Vector2i& end)
 		x = x + dx;
 		y = y + dy;
 		i = i + 1;
+
+		x = roundf(x);
+		y = roundf(y);
 		
+		points.push_back({ x, y });
+
 		if (Level::isInLevel(*currentLevel, x, y) && currentLevel->tileMap.tiles[x + y * currentLevel->dim.x].logicType == LogicType::Wall)
 			return false;
 	}
 
+
+	SDL_Log("start : (%d, %d) end: (%d, %d)", start.x, start.y, end.x, end.y);
+	for (Vector2i point : points)
+	{
+		SDL_Log("(%f, %f)", point.x, point.y);
+	}
+	
 	return true;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------

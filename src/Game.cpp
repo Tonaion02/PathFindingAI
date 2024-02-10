@@ -18,6 +18,8 @@
 #include "Systems/Exploring/EnemySystem.h"
 #include "Systems/Exploring/PathFindingSystem.h"
 
+#include "Systems/Exploring/RenderDebugLineOfSight.h"
+
 //Including Battle System
 #include "Systems/Battle/BattleRenderSystem.h"
 #include "Systems/Battle/BattleMoveSystem.h"
@@ -552,18 +554,24 @@ void Game::loadData()
 	//Init all system
 
 
-	//Test pathFinding
-	PathFindingSystem::EuclideanDistance* ed = new PathFindingSystem::EuclideanDistance();
-	PathNode* result = PathFindingSystem::findPath({ 30, 20 }, { 25, 16 }, ed);
-	free(ed);
+	//Init RenderDebugLineOfSightSystem
+	RenderDebugLineOfSight::init();
+	//Init RenderDebugLineOfSightSystem
 
 
-	while (result != nullptr)
-	{
-		SDL_Log("(%d, %d)", result->pos.x, result->pos.y);
-		result = result->parent;
-	}
-	//Test pathFinding
+
+	////Test pathFinding
+	//PathFindingSystem::EuclideanDistance* ed = new PathFindingSystem::EuclideanDistance();
+	//PathNode* result = PathFindingSystem::findPath({ 30, 20 }, { 25, 16 }, ed);
+	//free(ed);
+
+
+	//while (result != nullptr)
+	//{
+	//	SDL_Log("(%d, %d)", result->pos.x, result->pos.y);
+	//	result = result->parent;
+	//}
+	////Test pathFinding
 
 	///FOR TESTING
 }

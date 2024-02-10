@@ -23,6 +23,10 @@
 #include "Systems/Exploring/LineOfSightSystem.h"
 //Including systems
 
+//Including debug's systems
+#include "Systems/Exploring/RenderDebugLineOfSight.h"
+//Including debug's systems
+
 //Including context
 #include "Game.h"
 #include "World.h"
@@ -189,6 +193,13 @@ void EnemySystem::aiBaseEnemy()
 								p = { hp, s };
 							}
 
+							if (Level::isInLevel(*currentLevel, p.x, p.y, z) &&
+								currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
+								== EntityOccupier::PlayerOccupier)
+							{
+								RenderDebugLineOfSight::addLine(startPos, p);
+							}
+
 							if (Level::isInLevel(*currentLevel, p.x, p.y, z) && 
 								currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
 								== EntityOccupier::PlayerOccupier
@@ -196,6 +207,7 @@ void EnemySystem::aiBaseEnemy()
 							{
 								found = true;
 								BaseEnemyCmp.mPackedArray[i].lastPosPlayer = p;
+								
 								break;
 							}
 
@@ -226,7 +238,7 @@ void EnemySystem::aiBaseEnemy()
 					Vector2i lastPosPlayer = getCmpEntity(BaseEnemyCmp, e).lastPosPlayer;
 					if (found || (lastPosPlayer.x != -1 && lastPosPlayer.y != -1)) 
 					{
-						SDL_Log("TROVATO PORCODIO");
+						//SDL_Log("TROVATO PORCODIO");
 
 						PathNode* pathNode = PathFindingSystem::findPath(startPos, lastPosPlayer, euristic);
 						if (pathNode != nullptr && pathNode->parent != nullptr)
@@ -290,6 +302,13 @@ void EnemySystem::aiBaseEnemy()
 					}
 					//If can't see the player, idle logic
 				}
+			}
+
+
+
+			if (BaseEnemyCmp.mPackedArray[i].lastPosPlayer.x != -1 && BaseEnemyCmp.mPackedArray[i].lastPosPlayer.y != -1)
+			{
+				RenderDebugLineOfSight::addLine(startPos, BaseEnemyCmp.mPackedArray[i].lastPosPlayer);
 			}
 		}
 	}

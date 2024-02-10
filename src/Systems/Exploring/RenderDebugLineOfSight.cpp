@@ -23,13 +23,13 @@ std::vector<std::pair<Vector2i, Vector2i>> RenderDebugLineOfSight::linesToDraw;
 unsigned int RenderDebugLineOfSight::nextLine = 0;
 
 const unsigned int RenderDebugLineOfSight::reservedSpaceForLines = 40;
-const SDL_Color RenderDebugLineOfSight::lineColor = {0, 255, 0, 150};
+const SDL_Color RenderDebugLineOfSight::lineColor = {0, 255, 0, 255};
 
 
 
 void RenderDebugLineOfSight::init()
 {
-	linesToDraw.reserve(RenderDebugLineOfSight::reservedSpaceForLines);
+	linesToDraw.resize(RenderDebugLineOfSight::reservedSpaceForLines);
 }
 
 
@@ -51,15 +51,16 @@ void RenderDebugLineOfSight::renderLines()
 	SDL_SetRenderDrawColor(WindowHandler::get().getRenderer(), lineColor.r, lineColor.g, lineColor.b, lineColor.a);
 
 
+
 	//Draw all the lines
 	for (unsigned int i = 0;i < nextLine; i++)
 	{
 		auto points = linesToDraw[i];
 
-		points.first.x = static_cast<int>(points.first.x * tileDim + adj.x);
-		points.first.y = static_cast<int>(points.first.y * tileDim + adj.y);
-		points.second.x = static_cast<int>(points.second.x * tileDim + adj.x);
-		points.second.y = static_cast<int>(points.second.y * tileDim + adj.y);
+		points.first.x = static_cast<int>((points.first.x + 0.5f)* tileDim + adj.x);
+		points.first.y = static_cast<int>((points.first.y + 0.5f)* tileDim + adj.y);
+		points.second.x = static_cast<int>((points.second.x + 0.5f)* tileDim + adj.x);
+		points.second.y = static_cast<int>((points.second.y + 0.5f)* tileDim + adj.y);
 
 		SDL_RenderDrawLine(WindowHandler::get().getRenderer(), points.first.x, points.first.y, points.second.x, points.second.y);
 	}

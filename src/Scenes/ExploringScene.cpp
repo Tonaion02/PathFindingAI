@@ -31,6 +31,7 @@
 #include "Systems/Exploring/RenderSystem.h"
 
 #include "Systems/Exploring/RenderDebugFieldOfView.h"
+#include "Systems/Exploring/RenderDebugLineOfSight.h"
 //Including Systems
 
 
@@ -102,6 +103,7 @@ void ExploringScene::generateOutputScene()
 	//Prepare rendering
 
 	RenderDebugFieldOfView::render();
+	RenderDebugLineOfSight::renderLines();
 }
 
 
