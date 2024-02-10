@@ -20,6 +20,7 @@
 #include "Systems/Exploring/AnimationSystem.h"
 #include "Systems/Exploring/MoveSystem.h"
 #include "Systems/Exploring/PathFindingSystem.h"
+#include "Systems/Exploring/LineOfSightSystem.h"
 //Including systems
 
 //Including context
@@ -190,7 +191,8 @@ void EnemySystem::aiBaseEnemy()
 
 							if (Level::isInLevel(*currentLevel, p.x, p.y, z) && 
 								currentLevel->tileMap.mappedEntities[z * currentLevel->dim.x * currentLevel->dim.y + p.y * currentLevel->dim.x + p.x]
-								== EntityOccupier::PlayerOccupier)
+								== EntityOccupier::PlayerOccupier
+								&& LineOfSightSystem::isVisible(startPos, p) )
 							{
 								found = true;
 								BaseEnemyCmp.mPackedArray[i].lastPosPlayer = p;

@@ -390,7 +390,8 @@ void Game::loadData()
 
 
 	TileSystem::unRegisterPos(getCmpEntity(world->mPoolTransformComponent, world->player).tileOccupied, z);
-	getCmpEntity(world->mPoolTransformComponent, world->player).pos = { 17.0f, 16.0f };
+	//getCmpEntity(world->mPoolTransformComponent, world->player).pos = { 17.0f, 16.0f };
+	getCmpEntity(world->mPoolTransformComponent, world->player).pos = { 37, 26 };
 	getCmpEntity(world->mPoolTransformComponent, world->player).tileOccupied = static_cast<Vector2i>(getCmpEntity(world->mPoolTransformComponent, world->player).pos);
 	TileSystem::registerPos(getCmpEntity(world->mPoolTransformComponent, world->player).tileOccupied, z, world->player);
 
