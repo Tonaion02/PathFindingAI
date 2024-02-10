@@ -35,12 +35,15 @@
 //Class EnemySystem
 //-----------------------------------------------------------------------------------------------------------------------------------------
 const unsigned int EnemySystem::angleView = 110;
+PathFindingSystem::MakeEstimation* EnemySystem::euristic;
 
 
 
 void EnemySystem::init()
 {
 	World* world = Game::get()->getWorld();
+
+	euristic = world->euclidean;
 
 	ComponentPool<BaseEnemyComponent>& BaseEnemyCmp = world->mPoolBaseEnemyComponent;
 	ComponentPool<MoveComponent>& MoveCmp = world->mPoolMoveComponent;
@@ -223,7 +226,7 @@ void EnemySystem::aiBaseEnemy()
 					{
 						SDL_Log("TROVATO PORCODIO");
 
-						PathNode* pathNode = PathFindingSystem::findPath(startPos, lastPosPlayer, world->euclidean);
+						PathNode* pathNode = PathFindingSystem::findPath(startPos, lastPosPlayer, euristic);
 						if (pathNode != nullptr && pathNode->parent != nullptr)
 						{
 							Vector2i nextPos = pathNode->parent->pos;
@@ -256,6 +259,10 @@ void EnemySystem::aiBaseEnemy()
 							ActionSystem::startAction(e, Actions::Walk);
 							MoveSystem::startMove(e, nextDirection);
 							AnimationSystem::startAnimation(e);
+						}
+						else
+						{
+							BaseEnemyCmp.mPackedArray[i].lastPosPlayer = { -1, -1 };
 						}
 					}
 					//If see the player

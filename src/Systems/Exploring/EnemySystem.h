@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ECS/Entity.h"
+#include "PathFindingSystem.h"
 
 
 
@@ -19,4 +20,6 @@ protected:
 
 public:
 	static const unsigned int angleView;
+
+	static PathFindingSystem::MakeEstimation* euristic;
 };

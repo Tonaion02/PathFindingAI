@@ -382,6 +382,7 @@ void Game::loadData()
 	PathFindingSystem::initGraph();
 
 	world->euclidean = new PathFindingSystem::EuclideanDistance();
+	world->manhattan = new PathFindingSystem::ManhattanDistance();
 	//Init PathFindingSystem
 
 

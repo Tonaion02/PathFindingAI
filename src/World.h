@@ -132,4 +132,5 @@ struct World
 	Graph graph;
 
 	PathFindingSystem::MakeEstimation* euclidean;
+	PathFindingSystem::MakeEstimation* manhattan;
 };
