@@ -44,7 +44,7 @@ Item* ItemInfoCenter::getItemPrototype(unsigned int idItem)
 unsigned int ItemInfoCenter::assignNewIdItem()
 {
 	static unsigned int nextIdItem = 0;
-	ASSERT(nextIdItem == MAX_ITEMS);
+	ASSERT(nextIdItem != MAX_ITEMS);
 	return nextIdItem++;
 }
 

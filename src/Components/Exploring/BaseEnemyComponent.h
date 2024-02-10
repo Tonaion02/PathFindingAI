@@ -17,4 +17,7 @@ struct BaseEnemyComponent
 	
 	std::vector<Direction> path;
 	int currentStepPath;
+
+
+	Vector2i lastPosPlayer;
 };

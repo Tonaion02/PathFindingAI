@@ -13,7 +13,7 @@
 #ifdef DEBUG
 #ifdef WINDOWS
 #define ASSERT(condition)			{\
-										if (!condition)\
+										if (!(condition))\
 										{\
 											printf("%s\n", GET_STRING_FROM_TOKEN(condition));\
 											printf("Erorr in file: %s in function: %s\n", __FILE__, __FUNCTION__);\

@@ -17,6 +17,16 @@ public:
 		virtual float operator()(Vector2i currentPos, Vector2i end) const = 0;
 	};
 
+	class EuclideanDistance : public PathFindingSystem::MakeEstimation
+	{
+	public:
+		virtual float operator()(Vector2i currentPos, Vector2i end) const override
+		{
+			return sqrtf((currentPos.x - end.x) * (currentPos.x - end.x) + (currentPos.y - end.y) * (currentPos.y - end.y));
+			//return abs(currentPos.x - end.x) + abs(currentPos.y - end.y);
+		}
+	};
+
 	static void initGraph();
 	static struct PathNode* findPath(const Vector2i& start, const Vector2i& end, MakeEstimation* estimation);
 	static std::array<int, 4> dx;

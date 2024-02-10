@@ -42,6 +42,8 @@
 #include "Data/Level/Graph.h"
 //Including some Data
 
+#include "Systems/Exploring/PathFindingSystem.h"
+
 
 
 
@@ -128,4 +130,6 @@ struct World
 
 
 	Graph graph;
+
+	PathFindingSystem::MakeEstimation* euclidean;
 };

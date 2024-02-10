@@ -164,7 +164,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Check if the destination is a valid position
 
 	//Check if the destination is walkable 
-	if (currentLevel.tileMap.tiles[end.x + end.y * currentLevel.dim.x].logicType != LogicType::Wall)
+	if (currentLevel.tileMap.tiles[end.x + end.y * currentLevel.dim.x].logicType == LogicType::Wall)
 		return nullptr;
 	//Check if the destination is walkable
 

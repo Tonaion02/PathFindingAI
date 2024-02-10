@@ -380,6 +380,8 @@ void Game::loadData()
 
 	//Init PathFindingSystem
 	PathFindingSystem::initGraph();
+
+	world->euclidean = new PathFindingSystem::EuclideanDistance();
 	//Init PathFindingSystem
 
 
@@ -549,19 +551,8 @@ void Game::loadData()
 
 
 	//Test pathFinding
-	class EuclideanDistance : public PathFindingSystem::MakeEstimation
-	{
-	public:
-		virtual float operator()(Vector2i currentPos, Vector2i end) const override
-		{
-			return sqrtf((currentPos.x - end.x) * (currentPos.x - end.x) + (currentPos.y - end.y) * (currentPos.y - end.y));
-			//return abs(currentPos.x - end.x) + abs(currentPos.y - end.y);
-		}
-	};
-
-
-	EuclideanDistance* ed = new EuclideanDistance();
-	PathNode* result = PathFindingSystem::findPath({ 5, 6 }, { 2, 2 }, ed);
+	PathFindingSystem::EuclideanDistance* ed = new PathFindingSystem::EuclideanDistance();
+	PathNode* result = PathFindingSystem::findPath({ 30, 20 }, { 25, 16 }, ed);
 	free(ed);
 
 

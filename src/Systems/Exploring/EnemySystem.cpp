@@ -19,6 +19,7 @@
 #include "Systems/Exploring/ActionSystem.h"
 #include "Systems/Exploring/AnimationSystem.h"
 #include "Systems/Exploring/MoveSystem.h"
+#include "Systems/Exploring/PathFindingSystem.h"
 //Including systems
 
 //Including context
@@ -51,6 +52,8 @@ void EnemySystem::init()
 		BaseEnemyCmp.mPackedArray[i].viewDistance = 5;
 		BaseEnemyCmp.mPackedArray[i].currentStepPath = 0;
 		MoveCmp.mPackedArray[i].lastDirection = BaseEnemyCmp.mPackedArray[i].path[0];
+
+		BaseEnemyCmp.mPackedArray[i].lastPosPlayer = { -1, -1 };
 	}
 	//Init all BaseEnemyComponent
 }
@@ -182,6 +185,7 @@ void EnemySystem::aiBaseEnemy()
 								== EntityOccupier::PlayerOccupier)
 							{
 								found = true;
+								BaseEnemyCmp.mPackedArray[i].lastPosPlayer = p;
 								break;
 							}
 
@@ -191,6 +195,7 @@ void EnemySystem::aiBaseEnemy()
 						//If found the player, is useless to check other positions
 						if (found == true)
 							break;
+							
 
 						//Until sbp and ebp(starting point and ending point of base of triangle) is the same, restrict the base
 						if (sbp != ebp)
@@ -208,19 +213,52 @@ void EnemySystem::aiBaseEnemy()
 
 
 					//If see the player
-					if (found) {
+					Vector2i lastPosPlayer = getCmpEntity(BaseEnemyCmp, e).lastPosPlayer;
+					if (found || (lastPosPlayer.x != -1 && lastPosPlayer.y != -1)) 
+					{
 						SDL_Log("TROVATO PORCODIO");
 
+						PathNode* pathNode = PathFindingSystem::findPath(startPos, lastPosPlayer, world->euclidean);
+						if (pathNode != nullptr && pathNode->parent != nullptr)
+						{
+							Vector2i nextPos = pathNode->parent->pos;
+							
 
 
+							Direction nextDirection = Direction::NoneDirection;
+							Vector2i diff = nextPos - startPos;
+							if (diff.x == 0)
+							{
+								if (diff.y == 1)
+									nextDirection = Direction::Down;
+								else
+									nextDirection = Direction::Up;
+							}
+							else
+							{
+								if (diff.x == 1)
+									nextDirection = Direction::Right;
+								else
+									nextDirection = Direction::Left;
+							}
+							
 
+
+							ASSERT(nextDirection != Direction::NoneDirection)
+
+
+							//getCmpEntity(MoveCmp, e).lastDirection = nextDirection;
+							ActionSystem::startAction(e, Actions::Walk);
+							MoveSystem::startMove(e, nextDirection);
+							AnimationSystem::startAnimation(e);
+						}
 					}
 					//If see the player
 
 
 
 					//If can't see the player, idle logic
-					if (!found)
+					if (!found && lastPosPlayer.x == -1 && lastPosPlayer.y == -1)
 					{
 						//Start an action if enemies not found the player
 						ActionSystem::startAction(e, Actions::Walk);
