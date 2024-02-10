@@ -92,6 +92,21 @@ public:
 		this->y /= other.y;
 	}
 
+
+
+	//Equals operator
+	bool operator==(const Vector2<T>& other)
+	{
+		return this->x == other.x && this->y == other.y;
+	}
+	bool operator!=(const Vector2<T>& other)
+	{
+		return this->x != other.x || this->y != other.y;
+	}
+	//Equals operator
+
+
+
 	//Methods Particular operation
 	Vector2<T> abs() const
 	{

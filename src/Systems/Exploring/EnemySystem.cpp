@@ -84,6 +84,11 @@ void EnemySystem::aiBaseEnemy()
 		{
 			if (ActionSystem::isDoingNothing(e))
 			{
+				if (BaseEnemyCmp.mPackedArray[i].lastPosPlayer == startPos)
+				{
+					BaseEnemyCmp.mPackedArray[i].lastPosPlayer = { -1, -1 };
+				}
+
 				if (BaseEnemyCmp.mPackedArray[i].alive)
 				{
 					//Search the player beetween the range of view of the enemy
@@ -247,7 +252,7 @@ void EnemySystem::aiBaseEnemy()
 							ASSERT(nextDirection != Direction::NoneDirection)
 
 
-							//getCmpEntity(MoveCmp, e).lastDirection = nextDirection;
+
 							ActionSystem::startAction(e, Actions::Walk);
 							MoveSystem::startMove(e, nextDirection);
 							AnimationSystem::startAnimation(e);
