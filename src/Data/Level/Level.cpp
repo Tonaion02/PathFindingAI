@@ -327,7 +327,7 @@ bool Level::isInLevel(const Level& level, int x, int y, int z)
 
 
 
-bool Level::isInLevel(const Level & level, int x, int y)
+bool Level::isInLevel(const Level& level, int x, int y)
 {
 	return x >= 0 && y >= 0 && x < level.dim.x && y < level.dim.y;
 }
