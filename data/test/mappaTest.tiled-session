@@ -1,0 +1,20 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "Tutti i file (*)",
+    "fileStates": {
+    },
+    "last.imagePath": "C:/ProgrammiCpp/PathFindingAI/data/test",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "mappaTest.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
