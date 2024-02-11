@@ -14,13 +14,13 @@ public:
 	class MakeEstimation
 	{
 	public:
-		virtual float operator()(Vector2i currentPos, Vector2i end) const = 0;
+		virtual float operator()(const Vector2i& currentPos, const Vector2i& end) const = 0;
 	};
 
 	class EuclideanDistance : public PathFindingSystem::MakeEstimation
 	{
 	public:
-		virtual float operator()(Vector2i currentPos, Vector2i end) const override
+		virtual float operator()(const Vector2i& currentPos, const Vector2i& end) const override
 		{
 			return sqrtf((currentPos.x - end.x) * (currentPos.x - end.x) + (currentPos.y - end.y) * (currentPos.y - end.y));
 		}
@@ -29,9 +29,18 @@ public:
 	class ManhattanDistance : public PathFindingSystem::MakeEstimation
 	{
 	public:
-		virtual float operator()(Vector2i currentPos, Vector2i end) const override
+		virtual float operator()(const Vector2i& currentPos, const Vector2i& end) const override
 		{
 			return abs(currentPos.x - end.x) + abs(currentPos.y - end.y);
+		}
+	};
+
+	class ChebyShevDistance : public PathFindingSystem::MakeEstimation
+	{
+	public:
+		virtual float operator()(const Vector2i& currentPos, const Vector2i& end) const override
+		{
+			return std::max(std::abs(currentPos.x - end.x), std::abs(currentPos.y - end.y));
 		}
 	};
 
