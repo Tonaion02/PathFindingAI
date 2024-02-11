@@ -26,6 +26,9 @@
 std::array<int, 4> PathFindingSystem::dx = { -1, 0, 1, 0 };
 std::array<int, 4> PathFindingSystem::dy = { 0, 1, 0, -1 };
 
+unsigned int PathFindingSystem::exploredNodesCounter = 0;
+const float PathFindingSystem::weight = 2.0f;
+
 
 
 
@@ -125,6 +128,7 @@ private:
 		}
 	}
 
+private:
 	std::vector<PathNode*> heap;
 };
 
@@ -260,6 +264,10 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 				newNode->parent = &currentNode;
 
 				minHeap.insert(newNode);
+
+				//Testing
+				PathFindingSystem::exploredNodesCounter++;
+				//Testing
 			}
 			//If the node is not explored and is not in the heap, add to the heap
 		}
@@ -267,6 +275,10 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Until the heap is empty loop
 
 	graph.nextNode = 0;
+
+	//Testing
+	PathFindingSystem::exploredNodesCounter = 0;
+	//Testing
 
 	return nullptr;
 }

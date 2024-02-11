@@ -198,6 +198,7 @@ void EnemySystem::aiBaseEnemy()
 								== EntityOccupier::PlayerOccupier)
 							{
 								RenderDebugLineOfSight::addLine(startPos, p);
+								SDL_Log("Sei visibile!!!");
 							}
 
 							if (Level::isInLevel(*currentLevel, p.x, p.y, z) && 

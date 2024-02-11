@@ -133,4 +133,5 @@ struct World
 
 	PathFindingSystem::MakeEstimation* euclidean;
 	PathFindingSystem::MakeEstimation* manhattan;
+	PathFindingSystem::MakeEstimation* chebyshev;
 };

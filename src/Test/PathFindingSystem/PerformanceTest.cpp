@@ -34,7 +34,12 @@ void PerformanceTest::test()
 
 	outputFile = std::ofstream(PerformanceTest::filePath);
 
-	singleTest({0,0}, {159, 159}, world->euclidean);
+	singleTest({10,10}, {159, 159}, world->chebyshev);
+
+
+
+
+	outputFile.close();
 }
 
 void PerformanceTest::singleTest(const Vector2i& start, const Vector2i& end, PathFindingSystem::MakeEstimation* euristic)
@@ -43,15 +48,14 @@ void PerformanceTest::singleTest(const Vector2i& start, const Vector2i& end, Pat
 
 
 	auto t1 = std::chrono::high_resolution_clock::now();
-	PathFindingSystem::findPath(start, end, euristic);
+	PathNode* pathNode = PathFindingSystem::findPath(start, end, euristic);
 	auto t2 = std::chrono::high_resolution_clock::now();
 
 	//Getting number of milliseconds as a double
-	auto ns = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
-	auto ns2 = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
+	auto ns = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
 	//Getting number of milliseconds as a double
 
-	std::string testOutput = "Test " + std::to_string(counter) + ": " + std::to_string(ns.count()) + "micros" + "\n";
+	std::string testOutput = "Test " + std::to_string(counter) + ": " + std::to_string(ns.count()) + "micros" + " Nodes explored: " + std::to_string(PathFindingSystem::getExploredNodesCounter()) +"\n";
 	
 	outputFile << testOutput.c_str();
 

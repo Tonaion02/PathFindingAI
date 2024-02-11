@@ -64,6 +64,12 @@
 
 
 
+//Testing
+#include "Test/PathFindingSystem/PerformanceTest.h"
+//Testing
+
+
+
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -170,7 +176,7 @@ void Game::loadData()
 	//Init some base data
 	mIsRunning = true;
 
-	mVsync = false;
+	mVsync = true;
 
 	mDebugMode = true;
 
@@ -385,6 +391,7 @@ void Game::loadData()
 
 	world->euclidean = new PathFindingSystem::EuclideanDistance();
 	world->manhattan = new PathFindingSystem::ManhattanDistance();
+	world->chebyshev = new PathFindingSystem::ChebyShevDistance();
 	//Init PathFindingSystem
 
 
@@ -541,10 +548,6 @@ void Game::loadData()
 
 
 
-	SDL_Log("Ended creation");
-
-
-
 	//Init all system
 	CameraSystem::init();
 
@@ -557,6 +560,8 @@ void Game::loadData()
 	//Init RenderDebugLineOfSightSystem
 	RenderDebugLineOfSight::init();
 	//Init RenderDebugLineOfSightSystem
+
+	SDL_Log("Ended creation");
 
 
 
@@ -574,6 +579,14 @@ void Game::loadData()
 	////Test pathFinding
 
 	///FOR TESTING
+
+
+
+
+
+	//Testing PathFinding
+	PerformanceTest::test();
+	//Testing PathFinding
 }
 
 
