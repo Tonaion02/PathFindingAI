@@ -41,11 +41,12 @@ void PerformanceTest::test()
 
 
 	PerformanceTest::allEuristic({ 7, 13 }, { 18, 0 });
-	PerformanceTest::allEuristic({ 10, 13 }, { 18, 0 });
+	PerformanceTest::allEuristic({ 7, 13 }, { 18, 0 });
 	PerformanceTest::allEuristic({ 33, 1 }, { 75, 36 });
 	PerformanceTest::allEuristic({ 156, 52 }, {20, 71});
-
-
+	PerformanceTest::allEuristic({ 79, 36 }, { 158, 1 });
+	PerformanceTest::allEuristic({ 3, 130 }, { 61, 125 });
+	PerformanceTest::allEuristic({ 29, 103 }, { 33, 155 });
 
 
 	outputFile.close();
