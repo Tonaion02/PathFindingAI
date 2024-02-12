@@ -19,3 +19,6 @@ src/Inspiration/**.cpp
 
 # Directories
 Inspiration
+
+# Testing Results
+data/Test/Result/**.txt
