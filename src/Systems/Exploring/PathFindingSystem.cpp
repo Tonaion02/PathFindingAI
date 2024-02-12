@@ -141,6 +141,14 @@ void PathFindingSystem::initGraph()
 	//Set size of graph and explored matrix
 	world->graph.nextNode = 0;
 	world->graph.pathNodes.resize(MAX_H_MAP * MAX_W_MAP);
+	//std::fill(world->graph.pathNodes.begin(), world->graph.pathNodes.end(), { {-1, -1}, 0.0f, 0.0f, nullptr });
+	for (PathNode& node : world->graph.pathNodes)
+	{
+		node.pos = { -1, -1 };
+		node.cost = 0.0f;
+		node.estimation = 0.0f;
+		node.parent = nullptr;
+	}
 	world->graph.visited.resize(MAX_H_MAP * MAX_W_MAP);
 	//Set size of graph and explored matrix
 }
@@ -179,6 +187,11 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	std::fill(world->graph.visited.begin(), world->graph.visited.end(), false);
 	//Reset graph struct
 
+	//Testing
+	PathFindingSystem::exploredNodesCounter = 0;
+	//Testing
+
+
 
 	//Create MinHeap
 	MinHeap minHeap(MAX_H_MAP * MAX_W_MAP);
@@ -201,6 +214,11 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	{
 		//Retrieve node on top of heap and pop from heap that node
 		PathNode& currentNode = *minHeap.top();
+		if (currentNode.pos.x == 43 && currentNode.pos.y == 44)
+		{
+			SDL_Log("FIGLIO DI TROIA");
+		}
+		
 		minHeap.pop();
 		//Retrieve node on top of heap and pop from heap that node
 
@@ -248,6 +266,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 				nextNode.parent = &currentNode;
 				nextNode.cost = currentNode.cost + 1;
 				nextNode.estimation = (*estimation)(nextNodePos, start);
+				nextNode.pos = nextNodePos;
 
 				minHeap.updateKey(index, &nextNode);
 			}
@@ -275,10 +294,6 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	//Until the heap is empty loop
 
 	graph.nextNode = 0;
-
-	//Testing
-	PathFindingSystem::exploredNodesCounter = 0;
-	//Testing
 
 	return nullptr;
 }
