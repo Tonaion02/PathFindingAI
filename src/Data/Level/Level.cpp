@@ -43,7 +43,7 @@ Level levelWrapper(const std::string& path)
 	World* world = Game::get()->getWorld();
 	ExploringScene* exploringScene = Game::get()->getExploringScene();
 
-	std::string baseDataPath = "data/";
+	std::string baseDataPath = "data/test/";
 
 	Level level;
 
@@ -86,7 +86,7 @@ Level levelWrapper(const std::string& path)
 			std::string path = var.getValue("source");
 			path = baseDataPath + path.substr(0, path.find(".")) + ".png";
 
-			if (path != "data/tekTileSet.png")
+			if (path != "data/test/tekTileSet.png")
 				level.tileSet = world->mTileSetHandler.getTileSet(path);
 			else
 				firstGId = std::stoi(var.getValue("firstgid"));
@@ -266,7 +266,7 @@ Level levelWrapper(const std::string& path)
 	level.battleCamp.dim = { 20, 20 };
 	level.battleCamp.maxZ = 2;
 
-	level.battleCamp.tileSet = *world->mTileSetHandler.getTileSet("data/buch-outdoor.png");
+	level.battleCamp.tileSet = *world->mTileSetHandler.getTileSet("data/test/buch-outdoor.png");
 
 	for (int z = 0; z < level.battleCamp.maxZ; z++)
 	{

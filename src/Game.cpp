@@ -207,9 +207,9 @@ void Game::loadData()
 	//Load TileSet and Texture
 	int tileDim = 32;
 
-	world->currentLevel.texture = TextureHandler::get().getTexture("data/buch-outdoor.png");
-	world->mTileSetHandler.loadTileSet("data/buch-outdoor.png", tileDim);
-	world->currentLevel.tileSet = world->mTileSetHandler.getTileSet("data/buch-outdoor.png");
+	world->currentLevel.texture = TextureHandler::get().getTexture("data/test/buch-outdoor.png");
+	world->mTileSetHandler.loadTileSet("data/test/buch-outdoor.png", tileDim);
+	world->currentLevel.tileSet = world->mTileSetHandler.getTileSet("data/test/buch-outdoor.png");
 	world->textureActor = TextureHandler::get().getTexture("data/player.png");
 	world->mTileSetHandler.loadTileSet("data/player.png", tileDim);
 	world->tilesetActor = world->mTileSetHandler.getTileSet("data/player.png");
@@ -231,7 +231,8 @@ void Game::loadData()
 	
 	//Load Level	
 	//world->currentLevel = levelWrapper("data/level0.tmx");
-	world->currentLevel = levelWrapper("data/stressTestLevel.tmx");
+	//world->currentLevel = levelWrapper("data/stressTestLevel.tmx");
+	world->currentLevel = levelWrapper("data/test/mappaPerformanceTest.tmx");
 
 	SDL_Log("Level loaded");
 	//Load Level

@@ -27,7 +27,7 @@ std::array<int, 4> PathFindingSystem::dx = { -1, 0, 1, 0 };
 std::array<int, 4> PathFindingSystem::dy = { 0, 1, 0, -1 };
 
 unsigned int PathFindingSystem::exploredNodesCounter = 0;
-const float PathFindingSystem::weight = 2.0f;
+const float PathFindingSystem::weight = 1.0f;
 
 
 
@@ -214,10 +214,6 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 	{
 		//Retrieve node on top of heap and pop from heap that node
 		PathNode& currentNode = *minHeap.top();
-		if (currentNode.pos.x == 43 && currentNode.pos.y == 44)
-		{
-			SDL_Log("FIGLIO DI TROIA");
-		}
 		
 		minHeap.pop();
 		//Retrieve node on top of heap and pop from heap that node
