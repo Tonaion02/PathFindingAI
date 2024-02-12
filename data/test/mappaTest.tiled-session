@@ -8,6 +8,35 @@
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
     "fileStates": {
+        "C:/ProgrammiCpp/PathFindingAI/data/buch-outdoor.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/ProgrammiCpp/PathFindingAI/data/stressTestLevel.tmx": {
+            "expandedGroupLayers": [
+                2
+            ],
+            "scale": 0.7402083333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 625.4995778215593,
+                "y": 401.2383900928793
+            }
+        },
+        "C:/ProgrammiCpp/PathFindingAI/data/tekTileSet.tsx": {
+            "scaleInDock": 1
+        },
+        "mappaPerformanceTest.tmx": {
+            "expandedGroupLayers": [
+                4,
+                2
+            ],
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 814,
+                "y": 106
+            }
+        }
     },
     "last.imagePath": "C:/ProgrammiCpp/PathFindingAI/data/test",
     "map.lastUsedFormat": "tmx",
@@ -15,6 +44,7 @@
     ],
     "project": "mappaTest.tiled-project",
     "recentFiles": [
+        "C:/ProgrammiCpp/PathFindingAI/data/stressTestLevel.tmx"
     ],
     "tileset.lastUsedFormat": "tsx"
 }
