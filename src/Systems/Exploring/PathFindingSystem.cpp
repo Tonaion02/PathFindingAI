@@ -27,7 +27,7 @@ std::array<int, 4> PathFindingSystem::dx = { -1, 0, 1, 0 };
 std::array<int, 4> PathFindingSystem::dy = { 0, 1, 0, -1 };
 
 unsigned int PathFindingSystem::exploredNodesCounter = 0;
-const float PathFindingSystem::weight = 1.0f;
+const float PathFindingSystem::weight = 2.0f;
 
 
 

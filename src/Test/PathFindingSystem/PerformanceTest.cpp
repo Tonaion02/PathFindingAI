@@ -35,13 +35,15 @@ void PerformanceTest::test()
 	World* world = Game::get()->getWorld();
 
 
-	PerformanceTest::counter = 0;
+	PerformanceTest::counter = 1;
 
 	outputFile = std::ofstream(PerformanceTest::filePath);
 
 
 	PerformanceTest::allEuristic({ 7, 13 }, { 18, 0 });
 	PerformanceTest::allEuristic({ 10, 13 }, { 18, 0 });
+	PerformanceTest::allEuristic({ 33, 1 }, { 75, 36 });
+	PerformanceTest::allEuristic({ 156, 52 }, {20, 71});
 
 
 
@@ -76,7 +78,7 @@ void PerformanceTest::singleTest(const Vector2i& start, const Vector2i& end, Pat
 	auto ns = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
 	//Getting number of milliseconds as a double
 
-	std::string testOutput = "Test " + std::to_string(counter) + ": " + "Euristic: " + PerformanceTest::euristicUsed + " " + std::to_string(ns.count()) + "micros" + " Nodes explored: " + std::to_string(PathFindingSystem::getExploredNodesCounter()) +"\n";
+	std::string testOutput = "Test " + std::to_string(counter) + ": " + "Euristic: " + PerformanceTest::euristicUsed + " Elapsed time: " + std::to_string(ns.count()) + "micros" + " Nodes explored: " + std::to_string(PathFindingSystem::getExploredNodesCounter()) +"\n";
 	
 	outputFile << testOutput.c_str();
 
