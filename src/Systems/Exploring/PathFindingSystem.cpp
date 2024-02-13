@@ -27,7 +27,7 @@ std::array<int, 4> PathFindingSystem::dx = { -1, 0, 1, 0 };
 std::array<int, 4> PathFindingSystem::dy = { 0, 1, 0, -1 };
 
 unsigned int PathFindingSystem::exploredNodesCounter = 0;
-const float PathFindingSystem::weight = 2.0f;
+const float PathFindingSystem::weight = 1.0f;
 
 
 
@@ -231,6 +231,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 
 
 
+		int cost = 0;
 		Vector2i nextNodePos;
 		for (int i = 0; i < dx.size(); i++)
 		{
@@ -239,6 +240,10 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 			nextNodePos.y = currentNode.pos.y + dy[i];
 			//Compute the position of the nextNode to evalue
 
+			//Control if you changed direction
+			cost = 1;
+			if (currentNode.parent != nullptr && Vector2i((nextNodePos - currentNode.pos) - (currentNode.pos - currentNode.parent->pos)) != Vector2i({0, 0}))
+				cost = 1.1;
 
 
 			//if the nextNodePos is not a valid position for the current level, or the tile is not navigable, skip this node
@@ -260,7 +265,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 				int index = found;
 
 				nextNode.parent = &currentNode;
-				nextNode.cost = currentNode.cost + 1;
+				nextNode.cost = currentNode.cost + cost;
 				nextNode.estimation = (*estimation)(nextNodePos, start);
 				nextNode.pos = nextNodePos;
 
@@ -274,7 +279,7 @@ PathNode* PathFindingSystem::findPath(const Vector2i& start, const Vector2i& end
 				PathNode* newNode = &graph.pathNodes[graph.nextNode];
 				graph.nextNode++;
 				newNode->pos = nextNodePos;
-				newNode->cost = currentNode.cost + 1;
+				newNode->cost = currentNode.cost + cost;
 				newNode->estimation = (*estimation)(newNode->pos, start);
 				newNode->parent = &currentNode;
 
