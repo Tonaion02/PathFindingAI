@@ -327,22 +327,18 @@ void Game::loadData()
 		{
 			registerEntity(world->mPoolBaseEnemyComponent, e);
 
+			getCmpEntity(world->mPoolTransformComponent, e).pos = {10, 11};
+
 			std::vector<Direction> path;
 			path.push_back(Direction::Right);
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Down);
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Down);
-			path.push_back(Direction::Down);
+			path.push_back(Direction::Left);
 
 			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path; 
 		}
 
 		if (e == 3)
 		{
-			getCmpEntity(world->mPoolTransformComponent, e).pos = { 30, 20 };
+			getCmpEntity(world->mPoolTransformComponent, e).pos = { 110, 110 };
 			getCmpEntity(world->mPoolTransformComponent, e).tileOccupied = getCmpEntity(world->mPoolTransformComponent, e).pos;
 			getCmpEntity(world->mPoolTransformComponent, e).z = z;
 			registerEntity(world->mPoolDrawComponent, e);

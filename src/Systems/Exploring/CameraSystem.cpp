@@ -25,8 +25,7 @@ void CameraSystem::init()
 
 	world->cameraData.adj = { 0, 0 };
 	//world->cameraData.nTileToRender = { 30, 30 };
-	//world->cameraData.nTileToRender = { 120, 120 };
-	world->cameraData.nTileToRender = { 160, 160 };
+	world->cameraData.nTileToRender = { 120, 120 };
 	world->cameraData.baseScale = 1.0f;
 
 	Vector2i screenDim = WindowHandler::get().getWindowDimension();
