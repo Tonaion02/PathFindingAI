@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="160" height="160" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4701">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="160" height="160" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4701">
  <tileset firstgid="1" source="buch-outdoor.tsx"/>
  <tileset firstgid="3" source="tekTileSet.tsx"/>
  <group id="2" name="Group0">
@@ -167,7 +167,7 @@
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
   </layer>
-  <objectgroup id="6" name="t">
+  <objectgroup id="6" name="t" visible="0">
    <object id="1" gid="4" x="32" y="96" width="32" height="32"/>
    <object id="2" gid="4" x="64" y="96" width="32" height="32"/>
    <object id="3" gid="4" x="0" y="96" width="32" height="32"/>

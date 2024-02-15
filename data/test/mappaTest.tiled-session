@@ -29,14 +29,10 @@
             "scaleInDock": 1
         },
         "mappaPerformanceTest.tmx": {
-            "expandedGroupLayers": [
-                4,
-                2
-            ],
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 899,
+                "x": 900,
                 "y": 630
             }
         },

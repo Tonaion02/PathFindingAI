@@ -239,8 +239,6 @@ void EnemySystem::aiBaseEnemy()
 					Vector2i lastPosPlayer = getCmpEntity(BaseEnemyCmp, e).lastPosPlayer;
 					if (found || (lastPosPlayer.x != -1 && lastPosPlayer.y != -1)) 
 					{
-						//SDL_Log("TROVATO PORCODIO");
-
 						PathNode* pathNode = PathFindingSystem::findPath(startPos, lastPosPlayer, euristic);
 						if (pathNode != nullptr && pathNode->parent != nullptr)
 						{
@@ -296,7 +294,7 @@ void EnemySystem::aiBaseEnemy()
 
 						//Controll if is terminated the path and reverse it
 						if (BaseEnemyCmp.mPackedArray[i].currentStepPath == BaseEnemyCmp.mPackedArray[i].path.size())
-							EnemySystem::reversePath(e);
+							BaseEnemyCmp.mPackedArray[BaseEnemyCmp.mReverseArray[e]].currentStepPath = 0;
 						//Controll if is terminated the path and reverse it
 
 						//Start an action if enemies not found the player

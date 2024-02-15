@@ -23,8 +23,8 @@ bool LineOfSightSystem::isVisible(const Vector2i& start, const Vector2i& end)
 
 
 	//Assign to this variable start and end position
-	float x1 = start.x, y1 = start.y;
-	float x2 = end.x, y2 = end.y;
+	float x1 = start.x + 0.5f, y1 = start.y + 0.5f;
+	float x2 = end.x + 0.5f, y2 = end.y + 0.5f;
 	//Assign to this variable start and end position
 
 	float x, y, dx, dy, step;
