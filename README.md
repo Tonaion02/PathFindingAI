@@ -5,6 +5,10 @@
   <img src="presentation/projectLogo.png" alt="Image Description">
 </p>
 
-PathFindingAI is an attempt to create an AI for an enemy in a game that follow the player.
+PathFindingAI is an AI to follow a player in a game.
 
+***
+## Files
+The AI is developed in the following files:
+- a.cpp
 ***
