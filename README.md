@@ -29,6 +29,13 @@ that are hidden from a wall.
 - Idle: a simple routine to explore the area when there isn't many information about the target position.
 
 ***
+## Try the demo
+
+To compile the repository, you must use premake5.
+
+I developed this demo in vs2017.
+
+***
 ## Files
 The AI is developed in the following files:
 - a.cpp
