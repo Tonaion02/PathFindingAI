@@ -38,6 +38,6 @@ I developed this demo in vs2017.
 ***
 ## Files
 The AI is developed in the following files:
-- a.cpp
+
 ***
 
