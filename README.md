@@ -11,8 +11,10 @@ For a description of the work consult the doc folder.
 
 ***
 ## Features
-![showcase](https://www.youtube.com/watch?v=OsOChnBTgcI)
 
+<video width="640" height="360" controls>
+  <source src="https://www.youtube.com/watch?v=OsOChnBTgcI" type="video/mp4">
+</video>
 The following AI has these features:
 - Line of sight: implemented Line Of Sight(in an adapted version for tilegame with grid-based movement) to not track player
 that are hidden from a wall.   
