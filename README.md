@@ -14,7 +14,7 @@ For a description of the work consult the doc folder.
 
 We developed this project with some goals in mind:
 - Performance: we want that this AI is effectively ready to be implemented in a game that runs at least at 60 fps.
-- Plausibility: we want that the action of the AI is really understandable. For example, we want to 
+- Plausibility: we want that the action of the AI is really understandable. It's particulary important to increase the immersion. 
 
 ***
 ## Features
@@ -39,6 +39,6 @@ I developed this demo in vs2017.
 ## Files
 The AI is developed in the following files:
 - [PathFindingSystem.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.h), [PathFindingSystem.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.cpp): for the implementation of the algorithm used to compute the best path.
--  
-
+- [LineOfSightSystem.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/LineOfSightSystem.h), [LineOfSightSystem.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/LineOfSightSystem.cpp): for the implementation of the line of sight system adapted to a tilegame with a grid-based movement.
+- [RenderDebugFieldOfView.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.h) [RenderDebugFieldOfView.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.cpp) [RenderDebugLineOfSight.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.h) [RenderDebugLineOfSight.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.cpp) : systems created to render and debug visually the line of sight and field of view.
 ***
