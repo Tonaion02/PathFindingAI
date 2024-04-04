@@ -38,6 +38,7 @@ I developed this demo in vs2017.
 ***
 ## Files
 The AI is developed in the following files:
+- [PathFindingSystem.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.h), [PathFindingSystem.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.cpp): for the implementation of the algorithm used to compute the best path.
+-  
 
 ***
-
