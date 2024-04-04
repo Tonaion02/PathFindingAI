@@ -7,7 +7,7 @@
 
 PathFindingAI is an AI that follows a target in a game.
 
-For a description of the work consult the doc folder.
+For more detail about our work consult the [doc folder](https://github.com/Tonaion02/PathFindingAI/tree/readme/doc).
 
 ***
 ## Goals
@@ -25,8 +25,8 @@ The following AI has these features:
 - **Line of sight**: implemented Line Of Sight(in an adapted version for tilegame with grid-based movement) to not track player
 that are hidden from a wall.   
 - __A*__: An optimized implementation of the A* algorithm to find an optimal path efficiently.
-- Registering and using the last pos: when the "eye contact" is interrupted, no worries, the AI register the last location of the target and move to that location to explore the area.
-- Idle: a simple routine to explore the area when there isn't many information about the target position.
+- **Registering and using the last pos**: when the "eye contact" is interrupted, no worries, the AI register the last location of the target and move to that location to explore the area.
+- **Idle**: a simple routine to explore the area when there isn't many information about the target position.
 
 ***
 ## Try the demo
