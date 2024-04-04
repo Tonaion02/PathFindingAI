@@ -13,8 +13,8 @@ For a description of the work consult the doc folder.
 ## Goals
 
 We developed this project with some goals in mind:
-- Performance: we want that this AI is effectively ready to be implemented in a game that runs at least at 60 fps.
-- Plausibility: we want that the action of the AI is really understandable. It's particulary important to increase the immersion. 
+- **Performance**: we want that this AI is effectively ready to be implemented in a game that runs at least at 60 fps.
+- **Plausibility**: we want that the action of the AI is really understandable. It's particulary important to increase the immersion. 
 
 ***
 ## Features
@@ -22,9 +22,9 @@ We developed this project with some goals in mind:
 Showcase of the ai in action: https://www.youtube.com/watch?v=OsOChnBTgcI
 
 The following AI has these features:
-- Line of sight: implemented Line Of Sight(in an adapted version for tilegame with grid-based movement) to not track player
+- **Line of sight**: implemented Line Of Sight(in an adapted version for tilegame with grid-based movement) to not track player
 that are hidden from a wall.   
-- An optimized implementation of the A* algorithm to find an optimal path efficiently.
+- __A*__: An optimized implementation of the A* algorithm to find an optimal path efficiently.
 - Registering and using the last pos: when the "eye contact" is interrupted, no worries, the AI register the last location of the target and move to that location to explore the area.
 - Idle: a simple routine to explore the area when there isn't many information about the target position.
 
@@ -33,7 +33,7 @@ that are hidden from a wall.
 
 To compile the repository, you must use premake5.
 
-I developed this demo in vs2017.
+I developed this demo in vs2017:
 ```
 $premake5 vs2017
 ```
