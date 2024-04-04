@@ -34,11 +34,14 @@ that are hidden from a wall.
 To compile the repository, you must use premake5.
 
 I developed this demo in vs2017.
+```
+$premake5 vs2017
+```
 
 ***
 ## Files
 The AI is developed in the following files:
 - [PathFindingSystem.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.h), [PathFindingSystem.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/PathFindingSystem.cpp): for the implementation of the algorithm used to compute the best path.
 - [LineOfSightSystem.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/LineOfSightSystem.h), [LineOfSightSystem.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/LineOfSightSystem.cpp): for the implementation of the line of sight system adapted to a tilegame with a grid-based movement.
-- [RenderDebugFieldOfView.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.h) [RenderDebugFieldOfView.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.cpp) [RenderDebugLineOfSight.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.h) [RenderDebugLineOfSight.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.cpp) : systems created to render and debug visually the line of sight and field of view.
+- [RenderDebugFieldOfView.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.h), [RenderDebugFieldOfView.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugFieldOfView.cpp), [RenderDebugLineOfSight.h](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.h), [RenderDebugLineOfSight.cpp](https://github.com/Tonaion02/PathFindingAI/blob/main/src/Systems/Exploring/RenderDebugLineOfSight.cpp) : systems created to render and debug visually the line of sight and field of view.
 ***
