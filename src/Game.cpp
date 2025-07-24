@@ -230,7 +230,7 @@ void Game::loadData()
 
 	
 	//Load Level	
-	//world->currentLevel = levelWrapper("data/level0.tmx");
+	// world->currentLevel = levelWrapper("data/level0.tmx");
 	world->currentLevel = levelWrapper("data/stressTestLevel.tmx");
 	//world->currentLevel = levelWrapper("data/test/mappaPerformanceTest.tmx");
 
@@ -330,57 +330,62 @@ void Game::loadData()
 			getCmpEntity(world->mPoolTransformComponent, e).pos = {10, 11};
 
 			std::vector<Direction> path;
-			path.push_back(Direction::Right);
-			path.push_back(Direction::Left);
-
-			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path; 
-		}
-
-		if (e == 3)
-		{
-			getCmpEntity(world->mPoolTransformComponent, e).pos = { 110, 110 };
-			getCmpEntity(world->mPoolTransformComponent, e).tileOccupied = getCmpEntity(world->mPoolTransformComponent, e).pos;
-			getCmpEntity(world->mPoolTransformComponent, e).z = z;
-			registerEntity(world->mPoolDrawComponent, e);
-			getCmpEntity(world->mPoolDrawComponent, e).id = 17;
-
-			TileSystem::unRegisterPos({ (int)x, (int)x }, z);
-			TileSystem::registerPos(getCmpEntity(world->mPoolTransformComponent, e).pos, z, e);
-
-
-
-			registerEntity(world->mPoolBaseEnemyComponent, e);
-
-			std::vector<Direction> path;
 			//path.push_back(Direction::Right);
-			//path.push_back(Direction::Right);
-			
+			//path.push_back(Direction::Left);
+
 			path.push_back(Direction::Right);
 			path.push_back(Direction::Up);
 			path.push_back(Direction::Left);
 			path.push_back(Direction::Down);
 
-			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path;
+			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path; 
 		}
-
-
 
 		//if (e == 3)
 		//{
-		//	registerEntity(&world->mPoolBaseEnemyComponent, e);
+		//	getCmpEntity(world->mPoolTransformComponent, e).pos = { 110, 110 };
+		//	getCmpEntity(world->mPoolTransformComponent, e).tileOccupied = getCmpEntity(world->mPoolTransformComponent, e).pos;
+		//	getCmpEntity(world->mPoolTransformComponent, e).z = z;
+		//	registerEntity(world->mPoolDrawComponent, e);
+		//	getCmpEntity(world->mPoolDrawComponent, e).id = 17;
+
+		//	TileSystem::unRegisterPos({ (int)x, (int)x }, z);
+		//	TileSystem::registerPos(getCmpEntity(world->mPoolTransformComponent, e).pos, z, e);
+
+
+
+		//	registerEntity(world->mPoolBaseEnemyComponent, e);
 
 		//	std::vector<Direction> path;
-		//	path.push_back(Direction::Right);
 		//	//path.push_back(Direction::Right);
+		//	//path.push_back(Direction::Right);
+		//	
+		//	path.push_back(Direction::Right);
+		//	path.push_back(Direction::Up);
+		//	path.push_back(Direction::Left);
+		//	path.push_back(Direction::Down);
 
-		//	getCmpEntity(&world->mPoolBaseEnemyComponent, e)->path = path;
-
-
-
-		//	//getCmpEntity(&world->mPoolTransformComponent, e)->pos = { 7, 7 };
-		//	//getCmpEntity(&world->mPoolTransformComponent, e)->tileOccupied = { 7, 7 };
-		//	//getCmpEntity(&world->mPoolTransformComponent, e)->z = 1;
+		//	getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path;
 		//}
+
+
+
+		if (e == 3)
+		{
+			registerEntity(world->mPoolBaseEnemyComponent, e);
+
+			std::vector<Direction> path;
+			path.push_back(Direction::Right);
+			//path.push_back(Direction::Right);
+
+			getCmpEntity(world->mPoolBaseEnemyComponent, e).path = path;
+
+
+
+			getCmpEntity(world->mPoolTransformComponent, e).pos = { 150, 150 };
+			getCmpEntity(world->mPoolTransformComponent, e).tileOccupied = { 150, 150 };
+			getCmpEntity(world->mPoolTransformComponent, e).z = 1;
+		}
 
 		x += 1.0f;
 	}
@@ -587,7 +592,7 @@ void Game::loadData()
 
 
 	//Testing PathFinding
-	PerformanceTest::test();
+	// PerformanceTest::test();
 	//Testing PathFinding
 }
 

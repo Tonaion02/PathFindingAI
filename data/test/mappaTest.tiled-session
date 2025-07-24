@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "mappaPerformanceTest.tmx",
+    "activeFile": "C:/source/C++/PathFindingAI/data/stressTestLevel.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tutti i file (*)",
@@ -25,6 +25,36 @@
         "C:/ProgrammiCpp/PathFindingAI/data/tekTileSet.tsx": {
             "scaleInDock": 1
         },
+        "C:/source/C++/PathFindingAI/data/buch-outdoor.tsx": {
+            "scaleInDock": 0.5
+        },
+        "C:/source/C++/PathFindingAI/data/level0.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 345.33333333333337,
+                "y": 604.6666666666666
+            }
+        },
+        "C:/source/C++/PathFindingAI/data/level0backup.tmx": {
+            "scale": 0.6709375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 552.212389380531,
+                "y": 639.4038192827202
+            }
+        },
+        "C:/source/C++/PathFindingAI/data/stressTestLevel.tmx": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2348,
+                "y": 3264
+            }
+        },
+        "C:/source/C++/PathFindingAI/data/tekTileSet.tsx": {
+            "scaleInDock": 1
+        },
         "buch-outdoor.tsx": {
             "scaleInDock": 1
         },
@@ -32,23 +62,31 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 900,
-                "y": 630
+                "x": 1230,
+                "y": 776
             }
         },
         "tekTileSet.tsx": {
             "scaleInDock": 1
         }
     },
+    "last.externalTilesetPath": "C:/source/C++/PathFindingAI/data",
     "last.imagePath": "C:/ProgrammiCpp/PathFindingAI/data/test",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "mappaPerformanceTest.tmx"
+        "mappaPerformanceTest.tmx",
+        "C:/source/C++/PathFindingAI/data/level0.tmx",
+        "C:/source/C++/PathFindingAI/data/level0backup.tmx",
+        "C:/source/C++/PathFindingAI/data/stressTestLevel.tmx"
     ],
     "project": "mappaTest.tiled-project",
     "recentFiles": [
         "mappaPerformanceTest.tmx",
+        "C:/source/C++/PathFindingAI/data/level0.tmx",
+        "C:/source/C++/PathFindingAI/data/level0backup.tmx",
+        "C:/source/C++/PathFindingAI/data/stressTestLevel.tmx",
         "C:/ProgrammiCpp/PathFindingAI/data/stressTestLevel.tmx"
     ],
+    "tileset.lastUsedFilter": "File Tileset Tiled (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx"
 }

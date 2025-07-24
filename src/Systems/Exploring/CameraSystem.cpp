@@ -24,7 +24,7 @@ void CameraSystem::init()
 	World* world = Game::get()->getWorld();
 
 	world->cameraData.adj = { 0, 0 };
-	//world->cameraData.nTileToRender = { 30, 30 };
+	// world->cameraData.nTileToRender = { 50, 50 };
 	world->cameraData.nTileToRender = { 120, 120 };
 	world->cameraData.baseScale = 1.0f;
 
@@ -41,7 +41,7 @@ void CameraSystem::init()
 	world->cameraData.maxZoom = (maxVisibleSpaceDim / 2.0f) * tanf(ToRadians(30.0f));
 	int minVisibleSpaceDim = static_cast<int>( (5 * world->currentLevel.tileSet->tileDim.x * world->cameraData.baseScale) );
 	world->cameraData.minZoom = (minVisibleSpaceDim / 2.0f) * tanf(ToRadians(30.0f));
-	world->cameraData.zoom = world->cameraData.maxZoom;
+	world->cameraData.zoom = world->cameraData.maxZoom / 3.0f;
 	//Calculate clamp value for scale
 
 	//Calculate scaleZoom and add to the baseScale
